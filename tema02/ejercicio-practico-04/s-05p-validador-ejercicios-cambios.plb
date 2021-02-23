@@ -1,0 +1,206 @@
+create or replace procedure spv_verifica_valor wrapped 
+a000000
+369
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+7
+31e 21b
+DdwiCtnceCgCi2qBusBSZGhMiVUwgxDxLkgVfC8CmP8+yZzKsxhmMh3gOPE+okTawG7d/xjd
+5xRayGv1agEjp4fYSjq9JGOYERn9cv5B01KLC8i4RtcjSb/ylsltoRu/McJQQR0v+hTc5yiI
+Gkb4EBUTMtrw50mEofov1fvYrIbnEDc3WfrKvl5EKculI2Q5OIoEf+0xpRmr8KMFUkW0md7e
+3X+S9GfnB4R05uC8cYJEtE1j7H6vfKrFVF0F4aMeOtVH9S3hHzP4xWo/u7xTQw4VS5Z1rc/X
+jSvIF9VEkJs36JmolIpfjduozUxsIJxpUony08aFAr8T7cdxO5qegbdw0JhTNgV4WT3TPFj5
+OocmO9FKKfJo/IuI6kMfkixSd9TDfz6g3z2OYwOf1PBTvRsxB8HoM4r6XBn/+Z2DRchkgpBi
+ctBTy6ZXM3/TqIw8IfzvRJeRZzb3u1Zr++eCwNgwDpQQ/2DTrRdo1QpF1X37ufRJlnDJ+ZkB
+l4XEexNvXDIo/ANNWtYz65awAjFb
+
+/
+create or replace procedure spv_verifica_inexistencia wrapped 
+a000000
+369
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+7
+201 1a1
+eKMcn2Q/tSSc/1GiNTk18N4NkCUwgzLIr9xGfI7pTE6UIFsE4NST8snMDoj9Y8jmSbmrrJB0
+9KC23bNEJIbEzgtvFal1UxK+/kM06+hWvVLbiEAzz/MfMcPG5VaiY10XPZ8JjVzuVKYmj4iA
+XxS4Z1bPon4e8N4YBBhE6X+HngQTdkRyMFVTZ2XrpKJ1uOwdQ1KpWCinlI8Aa6cmpZnLQko3
+239K52W3eQmpK7z6wtYJnQr/vjJrCZBAB04pHNSStH0jg4r4kw27zZhscc/ohUDQt34UTVGn
+S/0Ruv3n17eTyBdGuerQ0lv6VgDniQF1Q//JeM0j/bt78DDaYuy7ZKOf8PlsYanJW05qozIu
+COXX57V9RU5ViYiE93qtCh32n5rWsvK16WQmHdPrhZ06+5q1yKA=
+
+/
+show errors
+create or replace function spv_get_original_param_value wrapped 
+a000000
+369
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+8
+13f 14c
+s78fPbk/aecbi7VR3ktWpT8C4QQwg1zQLm0VfC9AAMHqRzueZg2PlQaoPMwd340hPhKZNVFv
+kunNRZz5MAOURdFHODAZnO5Y7Qb3kb0HgE53eAUpRdcgQgGeVXU8iZLeGCDabKYXOwnpRAzK
+jGZ7CfNHWyPorNTs6wTGcIvhNwm9ImZwPlIh64gAJp2L9UP4A8jIYhwEv7795BVaoTZvxlML
+d3lBjKYourQMW9YoXVzqakW+ljiF4nlMrLH+jAuaEpkpW3v3gI4g6YkWJWtzx8Q7ApeJb9+d
+gOEoBJz6FrAJ1Ci1Ipn6xoC7K1rIuxX6mW5SVFw=
+
+/
+show errors
+create or replace procedure spv_valida_parametros wrapped 
+a000000
+369
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+7
+195b 6f8
+qMYMN5u0TpuF8wLL5LUSrkflEY8wg81U2cAGV46QMrwGuXRVw4MbaxdAw2/L49sA2+h+t9Lc
+Y6kRcdZ5g58ljSbkR+RgIE4Lx3M/cBz7CT1ta6Y4Kfxa/mjvKRj34oFaqti2pZyu0vRi2D6M
+DIt/E1tBHnhg9X5fAUyzj9w8EnjCGUis4G6maMx5tLC/m7hZwuhggI4THy8N5V28YSonit4L
+PTYyzxLp0m231cA7TUm0qSDWdKFyRoUOCPvGCS5izanXHUyYREJXGoM9H6CZScCqhLgzCIJc
+Q7qsEA43sqasPvJ3BPCRpAouUf3mmZvqJyXo7PQEoNRWKq2MhswP36F+hLLgBBjoYMkm+kIx
+osyyXisSFKChLnuUibNniNNrWHQUChBQuVxRamxfgO9RwWjv9qgqjNrF/Tmz12DBZWsaPd5j
+nQbMd7FP3/5xS270HkLP01N8Qy9LB0RONwtjtjB+l+RvznZTnV0cEnDcH0ZN+NkMu2AgWuCC
+QqOoS0QyzwINgY4N4MH7PNOOM0yEWYuBWoCIac1kQHDUSg79fAE3Hgf/a6MPtfBDo9J8KdAg
+m43S1Bv8BjOn0pR2SQg8wZkU568ckMp37EPKulVDcRijF0H272uWlpMEyNDrpr0InPrh7kEo
+JItoho+P7zMHOZ8gxKUeVuR7KEKO8qtALWtNscq0aJ/tF6t8u/0oRqcvLgVMUFgNjyIiriwR
+4z7D708VceawL/gqOHKxf9O2gFF7tV58wKSmuqnXpCEPj7CF9t5FLXfygkhuKu6IJaG7+uS2
+8MXAMwpd6j0Ek6fhqeQH4qE7U35JQ5MJQUkBST4kSUO7O6LoCIYsoYFPoT70KSgmPtt6p+Cr
+Pds3LrhG+ozBmBwNbjAMslax8yU1Nr+IVGGBKP5NzdxCh7uqD2mOuxpUQyP7ARwXd8bLQnNu
+Ok5FIxfuXnZK61geMVaF/XzfJHqZhNycQdruvCyX2FB1vXKHUALaOphQRbidswfGMV8SQqTc
+6wgxFNLZD/MmdXmu4NGzqG3EqE1g825p2Ch6CY6/Ux+3VI2P/oDLrkf7QPwIpvQDyTxGLgt5
+xyRwS6ILbrNGkKz/T1ZPQo8kG008dztVaSPe1ZGZW+4r//BTHphaIzLacw88nejYbD7rDRQ9
+npgulfJWHolzkus19wZg/aWEw/kbALEUrfrRkF1M48CA9QEO0l18IOueKYDxo9jbZ3XcJDEz
+sBfPr88ZIruDK7Eo+ocTfOkpD94W6WwPlGoUJ673me88dGEilXt0Ml6bLfB1IzqhIOCPsnWY
+tkv9ERKMtff4QvIcBg+2w1jicEXRKLb4FsaWSsNUK9cl6PGaHyWivCSnBx865+hghtU1jHBo
+5Bb0zcd/RPpklAFG8P8f6iP7kkt8eaYAytwBd0cF/ufDYdrf6u/DZsSFI/7Tg6RSSe1suruz
+5w+ZQrTChXy/7xIk5QPrF40e/OBUARIfRU6GzTDPZJV6RqVmfdplh3uFmlmSwUxXlrJSeoN4
+FRzdz5S/gJv+4J3x1HnBqoa9piyoeh0i9ct7NuUmAQI3cx1hns/YyHlYm1LqWWxstWzgK+0b
+dtCDXF1zd0vR69gGICjqCM7Nh54dQhEvODIg01kQdrEgUnyd9VzP2kYNDQ4HtqeEu/Eew7Se
+tdM8DRKMSks3Uf3Jd/JszGg3RfwAMxHalW+PHeEDRDo79cmqSHcIMUkdUR4anR23DaofdvD/
+Kn0SSPMeRpPal2/c9IOdzs0kimSRMw==
+
+/
+show errors
+create or replace procedure spv_valida_archivos_en_disco wrapped 
+a000000
+369
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+7
+3d1 1ee
+JCNb9kOuYCUWgrgk5LislOjkhLYwg+3xsyfWfI5Av81ebphUTTsNmOzS5vbfkT0Yg7OYyJX1
+x1Tvf2IFBZZFZd9U2ZeXyka4j8+1+pwUKcBK1lwYa3kzka4Kwg5G8jNxuekMMC4YwgHhFUd8
+phzjqv3RfNKY9gQivJkLTLGZZAjPjQvnjOdba7Cu46HclFuoNZvoUV+EzPL/icggTFvS9NB7
+4i2kpO83YalQMOrrO2PZC/kVbNWTPqMK94km8fSf2H7GvGDnyAWy0q2z14oLTbRtS/TCorEd
+0BSrdkY+q2ZIMbYKeavFKafV0WKjUibY8nrwdwrmHcTWMnmHp+4heB0kl4XgKdB7FocHk0FY
+B9j7Rxtq+lAcM79nU6zW0Vek4Q2p10odZFhNjRoCztMTGjhut0Pt9DQLS8leKzRbEEluJq86
+iOWhUCRdbFZ2+leaqcfmwU9WWbWvFdIJb+idkltwj1e4ZBn7hWw+sg==
+
+/
+show errors
+create or replace procedure spv_reset_tablas wrapped 
+a000000
+369
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+7
+1b8 191
+SPtQBBPr8/MAbQPpJrVtDW5xlcswg0zI1ydqfC9GEjNeii7fjl6Sx54AhTNF84XxVKGhSBVs
+IjYlFNtrSSTPAcTb3susASqC7K5A9fSNSUb50qT/TJpMFWNzaMQQJ6zEQbdQSwbD0a0AF8p+
+4WkjwuxwlPk5OKhI+1byVqRXh1p0GHjnKik5U4k4g5NUln+89e8vniX6md1o6wyl6AbL1u7b
+E3Czo2uUEm6UZLWU5pPGXPTE8cSYL16Z9H5FcqkKntKjqK/aMAvIyZd+947OqMPDPPMY1Ejq
+oiYNOgLYGNQ5zZAI0dBJWmt8AVU//g3aoAfN87R8aSLv1LSzQP1W7W3dLtaN44GpeXLGtl+q
+VfBB9tA4cDpM1AQ3LTq04Pfb3gilHVCRnx0=
+
+/
+show errors
+set serveroutput on
+exec spv_print_header
+host sha256sum &&p_script_validador
+Prompt Haciendo reset de tablas
+exec spv_reset_tablas('&&p_nombre'||'0204')
+Prompt Ejecutando script s-03-modifica-parametros.sql
+start  s-03-modifica-parametros.sql
+set serveroutput on
+exec spv_valida_parametros('&&p_nombre'||'0204')
+exec spv_valida_archivos_en_disco
+exec spv_print_ok('Validación concluida');
+exit
