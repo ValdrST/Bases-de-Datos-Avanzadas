@@ -19,15 +19,15 @@ abcd
 abcd
 7
 392 24c
-BGDvJjxddz0tf94UqHblynCZjvYwg43xmtzWfI7U7d8IpP9MkyUEdYd1WFiPTfLD3ZtJIz31
-ae85Pim46jRfco/vipVGf3BIJ+BaDCm/I5L4/6+MuV9UqGxLFqd++gMh7lk0npSwUsUxCU3p
-xcffrqCMhKbQAj8RCQUChRoD/bdKgHD48NMtB8hQsD8P2j0yEPUZ8hwyO7hvdAYwUGbmEAUy
-Ode067RcML/EH7ih4nkX+Pz6jlDmkWbRa2llQtAMNK+7GYo6ANnK1wy9twaV3YEhSOi2MCub
-smm3sg7lIxNcAkoMVXD6NAo2o4wq1nrxkwQvS7u79AETgeUdLZDdpHGGGVv5uU1yXRLzghBP
-UGcDpCQOg7hvvhjGWKZtnM//H+E4Hf2MbSY3ujxMpF8DBFqHnlxNoPkUoaPfdzBavq0ECFnl
-RW/ZPYBVx71E6jQK/Sf9ULhCoJ9qaLqyQjvf+8NcEGEbuMbhZf9KgTM166/4MzMroflR84jb
-5DvIUD35SdhNsytPOkD2t/4f4rcA4jJJpWFh62Oq8+KqS5p/AcvqMt2/d4FiYpZS2E7WlrJ4
-Wws=
+mzO0OL5OcqR8nVwiILQHBjU15xYwg43xmtzWfI7U7d8IpP9MkyUEdRlXgrZ2XPSeVPmiZOzL
+J9vKbKS5GJwIiM9G7XV8OUcuLnTePnPcrqqarTB3kPPVGjZvlfFiQqcbbvTqawYh3Gy6ng1a
+Af+L9J/1548tUCguJ5gvWPWfCyUI536dzGYzL9OSd7v2sEXi0P+6+ozilP+sNXYoo6JNIJj/
+DogSq5ieu7kz4dH6Dc1+DwBY4aPjWdtsjvIbu1L0eM5VEwCdF4gaQj44CTQEU0HU1/XhcvK8
++yfC+8NcIAPlUFIm/VZYv41n9qDJyIBlmR3hM3MALX4DhzLKYbZT1vZo+N2apIFYz5bg6Lu2
+qxFhhlvD/f9m6ghXtnAI8XI65sp+cAv1fyq42UUK1lJvHfoMa56NPE8UodlAqyg+eFvvQaFc
+seC+kk0S0WuPGL8yhHkdq9HQPEh1EgqoZD0bqeXlcjw2uVRn1DEtGSIRezCaGRnF+g8hZtZ1
+nZTTRYO1RpQqg/yCmrh5m/kVMsLGDbk2GTyfRdKWFYEoM9roR+7ly85KRbxjQ2xKMj+lRNPw
+WxE=
 
 /
 show errors
@@ -200,7 +200,7 @@ Prompt Invocando scripts del ejercicio
 @s-02-roles.sql
 
 Prompt Invocando  Shell script
-!./s-03-archivo-password.sh
+!./s-03-archivo-passwords.sh
 
 Prompt Invocando ejercicio privilegios de administración
 @s-04-privs-admin
