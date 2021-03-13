@@ -1,0 +1,102 @@
+\documentclass[journal]{IEEEtran}
+\usepackage[english]{babel}
+
+\usepackage{amssymb, amsmath} %Paquetes matemáticos de la American Mathematical 
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+% Definicio de estilo para el codigo fuente que se cita
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+}
+\lstset{style=mystyle}
+
+\renewcommand{\lstlistingname}{Código}
+
+\ifCLASSINFOpdf
+
+\else
+
+\fi
+
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+\begin{document}
+
+\title{Ejercicio 1 - tema 2 \\ Juegos de caracteres y componentes de la BD.}
+%
+\author{Vicente Romero Andrade}
+
+\markboth{PEjercicio 1 - tema 2 Juegos de caracteres y componentes de la BD., Marzo~2021}%
+{Shell \MakeLowercase{\textit{et al.}}: }
+% The only time the second header will appear is for the odd numbered pages
+
+\maketitle
+
+
+\IEEEpeerreviewmaketitle
+
+\section{Objetivo}
+% The very first letter is a 2 line initial drop letter followed
+
+\IEEEPARstart{E}{l} objetivo es, comprender la importancia de los juegos de caracteres durante el proceso de instalación de una base de datos, conocer la forma en la que se 
+pueden consultar los diferentes componentes instalados en una base de datos y calcular el espacio en disco que ocupan.
+
+
+\section{Desarrollo}
+\subsection{C1. Juego de caracteres}
+\subsubsection{¿Qué significa AL32UTF8?}
+Significa "All Language 32 Unicode Transformation Format".
+\subsubsection{¿Cuál es la longitud máxima que puede tener un carácter con esta configuración?}
+4 bytes.\cite{AL32UTF8}
+\subsubsection{¿En qué casos un carácter requeriría la longitud máxima para poder almacenarse?}
+Cuando se usen los caracteres suplementarios que se encuentran definidos en las últimas versiones
+del estándar Unicode.
+\subsubsection{¿Por qué Oracle recomienda este juego de caracteres?}
+Porque UTF8 ya no recibe nuevas versiones del estándar Unicode y AL32UTF8 si, por lo que este último
+soporta mayor cantidad de caracteres.
+\subsubsection{¿Qué desventajas y en qué situaciones no se recomendaría este valor?}
+Cuando se requiera una compatibilidad estricta con aplicaciones externas a la base de datos de Oracle.
+\subsection{C2. Componentes de la base de datos}
+
+\subsection{C3. Salida de ejecución del script anterior}
+\subsection{C4. Salida de ejecución del validador}
+
+\section{Conclusiones}
+
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+
+\fi
+
+\begin{thebibliography}{2}
+  \bibitem{AL32UTF8}
+  "An Oracle White Paper", 
+  Oracle.com, 2005. [Online]. 
+  Available: http://www.oracle.com/technetwork/products/globalization/twp-appdev-unicode-10gr2-129234.pdf. 
+  [Accessed: 13- Mar- 2021].
+\end{thebibliography}
+\end{document}
