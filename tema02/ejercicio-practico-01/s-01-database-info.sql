@@ -1,5 +1,5 @@
 --@Autor: Vicente Romero Andrade
---@Fecha creacion:  06/03/2021
+--@Fecha creacion:  13/03/2021
 --@Descripcion: Muestra info de la base
 CONNECT sys/system1 as sysdba;
 CREATE USER vra0201 IDENTIFIED BY vra;
