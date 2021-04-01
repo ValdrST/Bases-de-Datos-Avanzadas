@@ -47,11 +47,11 @@
 
 \begin{document}
 
-\title{Ejercicio 2 - tema 2 \\ Configuraciones previas a la creación de una base de datos}
+\title{Ejercicio 3 - tema 2 \\ Creación de una base de datos con la instrucción create database}
 %
 \author{Vicente Romero Andrade}
 
-\markboth{Ejercicio 2 - Configuraciones previas a la creación de una base de datos, Marzo~2021}%
+\markboth{Ejercicio 3 - tema 2 Creación de una base de datos con la instrucción create database, Marzo~2021}%
 {Shell \MakeLowercase{\textit{et al.}}: }
 % The only time the second header will appear is for the odd numbered pages
 
@@ -63,26 +63,32 @@
 \section{Objetivo}
 % The very first letter is a 2 line initial drop letter followed
 
-\IEEEPARstart{E}{l} objetivo es comprender y poner en práctica el proceso básico para realizar todas las configuraciones necesarias para crear una base de datos a través de la
-instrucción create database.
+\IEEEPARstart{E}{l} objetivo es crear una base de datos a partir de la instrucción create database así como la creación de su diccionario de datos posterior proceso de
+configuración realizado en ejercicios anteriores.
 
 
 \section{Desarrollo}
-\subsection{C1. Codigo del script s-01-crea-loop-devices.sh}
-\lstinputlisting[language=bash,caption= s-01-crea-loop-devices.sh,label={lst:scriptloop}]{s-01-crea-loop-devices.sh}
-\subsection{C2. Codigo del script  s-02-crea-pwd-param.sh}
-\lstinputlisting[language=bash,caption=  s-02-crea-pwd-param.sh,label={lst:scriptpwd}]{s-02-crea-pwd-param.sh}
-\subsection{C3.  Salida del validador}
+\subsection{C1. Codigo del script s-03-crea-directorios.sh}
+\lstinputlisting[language=sql,caption=s-03-crea-directorios.sh,label={lst:scriptloop}]{s-03-crea-directorios.sh}
+\subsection{C2. Codigo del script s-04-crea-bd.sql}
+\lstinputlisting[language=sql,caption=s-04-crea-bd.sql,label={lst:scriptpwd}]{s-04-crea-bd.sql}
+\subsection{C3. Codigo del script s-05-crea-diccionario-datos.sql}
+\lstinputlisting[language=sql,caption=s-05-crea-diccionario-datos.sql,label={lst:scriptpwd}]{s-05-crea-diccionario-datos.sql}
+\subsection{C4.  Salida del validador}
 \begin{figure}[H]
   \centering
-  \includegraphics[scale=.24]{validador_ej2_t2.png}
+  \includegraphics[scale=.21]{validador_ej3_t2.png}
    \caption{Salida del validador}
    \label{fig:salidascript}
 \end{figure}
 \section{Conclusiones}
-En este ejercicio se creo el archivo de passwords y la creacion de loop devices.
-Fue algo muy util el poder simular discos duros ya que con eso en un entorno real
-se puede tener un respaldo y redundancia mayor.
+En este ejercicio se crearon los directorios donde residirán físicamente los datos de la base,
+así como el script que se ejecutara en sql para crear la base de datos usando estos scripts,
+adicionalmente se creó el archivo pfile y el archivo spfile para definir la configuración de 
+la base de datos y finalmente se creó el diccionario de datos. Este último paso tomó un tiempo 
+en ejecutarse, pero si los pasos anteriores se lograron correctamente no tendrá ningún problema.
+Una sugerencia sería el estimar cuanto espacio en disco duro va a utilizar esta nueva base de datos 
+ya que se encontraron problemas por el escaso espacio que estaba asignado en la máquina virtual.
 \ifCLASSOPTIONcaptionsoff
   \newpage
 
