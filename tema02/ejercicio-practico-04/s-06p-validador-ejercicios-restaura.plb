@@ -17,16 +17,16 @@ abcd
 abcd
 abcd
 7
-2e4 288
-hA+ObRaafFMCzokRcxsJK4xDz04wg3kJNUgFfC+KMWS0hKatAvNdSNKPtH72d6c2+p9K2+yj
-raJsCe4JSOua0mJzVOoY8BpnMi+nAwOC2febZrrlPbxp3VWTTy0tlPxnWcy/BEsBVJx8WKZ2
-0mUFsNpa/gVbXEdJt1uBAZDLkAl5d8BbCxKSCG88KdGYJWNzvoVhuFM+Ts/MVmEnsJ77LJ3F
-LXpW3xIqBBoxyjQxWhf34sqUQYXdIX8QcCygMmQT6R5MZQzPH3n2qsxQO2QWWPq0pRTkaH0E
-UOeJhVR3BOcqmV6pSV2wqqaxS2+hJQ0oYtR4WPxNqjb96byZGS+CLVBEO3lOo2HwSDQ6Infw
-JCkLD7GOXcqLSrN09sDA2izr+igjzKfltC67JEwJWFVy4j19WIk2XV+/ZSw01n9CGK+Cev42
-/4RV61DIKLYtKFShWzcSOfqVmZ6MSigzkaSX8b9pUDFlOQ45OTjAYZtp824gU5h9XqkfZ+i3
-FjnoCrEW6SQ7VK0R26F9qj8PM/fdeXnXU69tfS33Ghoba2aiepe6cRnQXyM7F75xAh3MKyez
-gbR0We6/FY1HdBnt2VaWXSQlMcTe8Z1jCBlzJPcELOFYFn6+pU1jJT3kag+rpk6F
+2e6 288
+VgSC6zUD1nIs9qIMjyLNplWCXvcwgzIJr0gFfHRVrQ+vhPuwhGnSHIrIG4NvVi2y2vpK4e/r
+Jny6wOmtuv54+KdztBG/r2UOPa8O+sb+hUlD6WHDChBrqZgDIgsL1Xc3dVG5fHDZS9E4ZftX
+fQFhrr/IucQo5XWuGyj863ukxWODTUPL1JvSc2LY60yfNww6C/d57rheizpRVH493JTx5JKT
+9F04LTEKNcrXOQbXYMVt9UQmj0Y56PQpHfgOOxJYVqO78ZMGmBG6+LesSBDp+lmDQLelXowL
+Z+8mooNR1GdNk8jxMKI/5JbuqzzmoUUza5XO0Oh7/LuvYGu7rHjbWVa4+jxhQr0FYHgZz/0G
+1E/SLWT2npvvBkqzdAvAwNosVfooI8yn5bQuuyTkMgGfJJiijMkJ08iCGaGqpcvbOpqdoxiv
+gnqBNv+EVetp9xP0tFvYGqzdANYEhmyZ7/coM5Gkl4m/aVAxZTkOOTnJwGGbafNuIFP9ZKeR
+hDA5kXu9C3BFEfDD0moYidZgieLB88Z5eddXrwOlLfMKFBs3ZqJ6l+rD4rpgvDwDfurupon3
+o/UA3x0JpZBwlSHWv+roQwJ6FJAQWBs6/ZtkMODP55FRVkn90JHFTNeac/s53YH/
 
 /
 show errors
@@ -34,8 +34,8 @@ set serveroutput on
 exec spv_print_header
 host sha256sum &&p_script_validador
 Prompt El validador reiniciará la instancia para realizar la validación
-pause  Presionar Enter para contunuar,  Ctrl -C para cancelar.
-Prompt deteniendo la instanicia
+pause  Presionar Enter para continuar,  Ctrl -C para cancelar.
+Prompt deteniendo la instancia
 shutdown immediate
 Prompt Iniciando instancia
 startup
