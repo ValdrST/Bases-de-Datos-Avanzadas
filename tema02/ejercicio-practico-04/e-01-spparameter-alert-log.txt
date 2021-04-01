@@ -1,0 +1,16 @@
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0.
+ORACLE_HOME:    /u01/app/oracle/product/19.0.0/dbhome_1
+System name:    Linux
+Node name:      pc-vra.fi.unam
+Release:        5.4.17-2036.103.3.1.el8uek.x86_64
+Version:        #2 SMP Sun Feb 14 12:54:18 PST 2021
+Machine:        x86_64
+Using parameter settings in server-side spfile /u01/app/oracle/product/19.0.0/dbhome_1/dbs/spfilevrabda2.ora
+System parameters with non-default values:
+  memory_target            = 768M
+  control_files            = "/u01/app/oracle/oradata/VRABDA2/control01.ctl"
+  control_files            = "/u02/app/oracle/oradata/VRABDA2/control02.ctl"
+  control_files            = "/u03/app/oracle/oradata/VRABDA2/control03.ctl"
+  db_name                  = "vrabda2"
+2021-03-14T19:42:10.071821-06:00
