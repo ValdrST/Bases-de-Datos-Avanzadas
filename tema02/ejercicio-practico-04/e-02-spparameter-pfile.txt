@@ -1,0 +1,17 @@
+vrabda2.__data_transfer_cache_size=0
+vrabda2.__db_cache_size=188743680
+vrabda2.__inmemory_ext_roarea=0
+vrabda2.__inmemory_ext_rwarea=0
+vrabda2.__java_pool_size=4194304
+vrabda2.__large_pool_size=4194304
+vrabda2.__oracle_base='/u01/app/oracle'#ORACLE_BASE set from environment
+vrabda2.__pga_aggregate_target=301989888
+vrabda2.__sga_target=503316480
+vrabda2.__shared_io_pool_size=12582912
+vrabda2.__shared_pool_size=276824064
+vrabda2.__streams_pool_size=0
+vrabda2.__unified_pga_pool_size=0
+*.control_files='/u01/app/oracle/oradata/VRABDA2/control01.ctl','/u02/app/oracle/oradata/VRABDA2/control02.ctl','/u03/app/oracle/oradata/VRABDA2/control03.ctl'
+*.db_name='vrabda2'
+*.db_securefile='PREFERRED'
+*.memory_target=768M
