@@ -1,0 +1,108 @@
+\documentclass[journal]{IEEEtran}
+\usepackage[english]{babel}
+
+\usepackage{amssymb, amsmath} %Paquetes matemáticos de la American Mathematical 
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+% Definicio de estilo para el codigo fuente que se cita
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+}
+\lstset{style=mystyle}
+
+\renewcommand{\lstlistingname}{Código}
+
+\ifCLASSINFOpdf
+
+\else
+
+\fi
+
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+\begin{document}
+
+\title{Ejercicio 1 - tema 3 \\ Procesos startup y shutdown de una base de datos.}
+%
+\author{Vicente Romero Andrade}
+
+\markboth{Ejercicio 1 - tema 3 Procesos startup y shutdown de una base de datos., Junio~2021}%
+{Shell \MakeLowercase{\textit{et al.}}: }
+% The only time the second header will appear is for the odd numbered pages
+
+\maketitle
+
+
+\IEEEpeerreviewmaketitle
+
+\section{Objetivo}
+% The very first letter is a 2 line initial drop letter followed
+
+\IEEEPARstart{E}{l} objetivo es, Comprender las características, acciones realizadas y 
+comportamiento de las diferentes etapas y modos que tiene una base de datos tanto para iniciar como para detener una instancia
+
+\section{Desarrollo}
+\subsection{C1.  Incluir la tabla de respuestas, agregar una breve explicación y/o justificación}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{||c |c| c||} 
+   \hline
+   Pregunta & Respuesta(inciso) &Explicación/justificación.\\ [1.0ex] 
+   \hline
+   P01 &  &  \\ 
+   P02 &  &  \\ 
+   P03 &  &  \\ 
+   P04 &  &  \\ 
+   P05 &  &  \\ 
+   P06 &  &  \\ 
+   P07 &  &  \\ 
+   P08 &  &  \\ 
+   P09 &  &  \\ 
+   P10 &  &  \\ 
+   P11 &  &  \\ 
+   P12 &  &  \\ 
+   P13 &  &  \\  [1ex] 
+   \hline
+  \end{tabular}
+  \caption{Tabla De respuestas}
+  \label{tabla:1}
+  \end{table}
+
+\section{Conclusiones}
+En este ejercicio se vieron los componentes de la base de datos que 
+son necesarios conocer antes de poder crear una nueva base, estos
+son importantes conocerlos para poder hacer estimaciones de los 
+recursos que van a ser necesarios más adelante. La única dificultad
+fue hacer que coincidiera el timezone\_offset con el del validador,
+podría añadirse una sección para cambiar la zona horaria de la base de datos.
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+
+\fi
+
+\end{document}
