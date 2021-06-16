@@ -111,47 +111,37 @@ insert into vra0401.t02_sga_dynamic_components(
     operation_count,
     last_operation_type,
     last_operation_time 
-) select component,trunc(current_size/1048576,2), oper_count, last_oper_type, last_oper_time
+  ) select component, trunc(current_size/1048576,2), oper_count, last_oper_type, last_oper_time
     from 
     v$sga_dynamic_components;
 
 insert into vra0401.t03_sga_max_dynamic_component(
-    component_name,
-    current_size_mb)
-    select component, trunc(current_size/1048576,2)
-    from 
-    v$sga_dynamic_components where current_size = (select max(current_size) from v$sga_dynamic_components);
+  component_name,
+  current_size_mb
+  ) select component, trunc(current_size/1048576,2)
+      from 
+      v$sga_dynamic_components where current_size = (select max(current_size) from v$sga_dynamic_components);
 
 insert into vra0401.t04_sga_min_dynamic_component(
     component_name,
-    current_size_mb)
-  values (
-    select component, trunc(current_size/1048576,2)
+    current_size_mb
+  ) select component, trunc(current_size/1048576,2)
     from 
     v$sga_dynamic_components where current_size = (
-    select min(current_size) from v$sga_dynamic_components where current_size > 0)
-  );
+    select min(current_size) from v$sga_dynamic_components where current_size > 0);
 
 insert into vra0401.t05_sga_memory_info(
     name,
     current_size_mb
-    ) 
-  values (
-    select name, trunc(bytes/1048576,2)  
-    from v$sgainfo where name = 'Maximum SGA Size'
-  );
+  ) select name, trunc(bytes/1048576,2)  
+    from v$sgainfo where name = 'Maximum SGA Size';
+
 insert into vra0401.t05_sga_memory_info(
     name,
     current_size_mb
-  ) 
-  values
-  (
-    select name, trunc(bytes/1048576,2)  
-    from v$sgainfo where name = 'Free SGA Memory Available'
-  );
+  ) select name, trunc(bytes/1048576,2)  
+    from v$sgainfo where name = 'Free SGA Memory Available';
 
-insert into vra0401.t06_sga_resizeable_components(name)
-  values(
-    select name from v$sgainfo
-        where resizeable = 'Yes'
-);
+insert into vra0401.t06_sga_resizeable_components(
+  name
+  ) select name from v$sgainfo where resizeable = 'Yes';
