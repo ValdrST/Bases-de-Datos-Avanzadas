@@ -1,0 +1,91 @@
+whenever sqlerror exit rollback
+create or replace procedure spv_clean wrapped 
+a000000
+369
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+7
+195 f7
+K6FGb//o4iJ7/KKd9HBE3RaszXMwg5By7Z4VfI5EcMEi6WFhjw6BFymJG7GrfHju6GI8Q2YG
+G2bnIp2Dy8vFw7FqOst2rtw34r3bgcCGailTJElBHqZGJawRFCYNGlaUG+NNqSVwFKKlsvbA
+QdWTfsr0CvqJhD6TrR6k4SuoHJ1gJeTv+ntRBYCVTZp92IwrSJo6pgC7Da+d0lGxcKQNfrhD
+OXUBF+esMa+C+Pnf4Xc6fcts4rhY
+
+/
+show errors
+create or replace procedure spv_check_tables wrapped 
+a000000
+369
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+abcd
+7
+159f 786
+j0qJ59J69O0ELp6Psy9KTdIKyKAwg1VUcsCb3y+7ra5rE2uMyXT0N89Zyy9uiackJrLS9pYc
+RDYI6n6CYWtratldtOp9KpY8jZELMQSEQFgclxQ5ZBo9+Z+qGUw6MQQifZAta4xwDS3oZPWS
+B5TxnGyy8nI8tHfwNQpkjKHZMM4tAcPZTfaHTKghLT+IHtQgPFo7isby7OWnEyY1OxFLKyFU
+lqt+jrIZQ7Lco+0tSjmGP7p47OFnD7u6jKcIGtAzwBs/ij892qcxc0yu9DUXxD25KQfvkGE9
+HCQi/EBY0/0jF3XafKtKowDZzydsi6CBsLmmOczkICKu2Ke9/yyTKGoZUyR8Y3CKn5cyTSvY
+cDXYJsHYepxFOA5wYS8+yzJ6qpmo0h8hoCvbSctBBSD1yUQzD44g4yADfRiYiDdpt6mjlh46
+bpI3UO7rWMScRodap36WAvBSv8BOQfC5cJGyqtE+Iy+SHt5TM72DFYMCsv6HqU3agWhQSYLO
+10dnrd+ZMooPG3ecEho29aGwqJKOq0jk+xrPIYWfhCgQk+0rfJgrOoE5akOnTCFrdD89UGj+
+dhqKn0nv3a99D4EHCFqAVT8Pu/W6pQxAOSL96FMHAdTudHJG82WVuOxUVFG2sDLmbgntPFOu
+zTbhbtPnFVmFJU6vpF5y/q9DQedvTMK70L8H5nzrOC/MDMcOchu0Nvfdh1OROR5VZpR9e/m4
+K2tV3N/YbgLxI8UFkn3qTCzKsg05pMPMXNh+VzbjN641NOlcDWQapBNARTowD4MDNinGmK69
+7Mw4FN11BZq0bIuT8+AilKfRveBy9V3p8cpHz9Pd9EKtqes6G9TPjOV2MpBrQVpNIDhwbSfF
+HRz3G9caanyERpJ57uFLAGAcJMzpyIatwRXcyrB+lzViQyUEwGyscdnm4riFXIjC0m52azKw
+8KLFZ15lEHPOmOfJuaxmGr3/28h2yCaXL2rYwMg9hMh276InKGWB5LvwkPvwsoX1TcFi4G2T
+Rkn0mVrgT9iM3R1C8m1mEPXW2JnxqwSGZPbzA/2IKHcq8DqmXRhuzdxslkF9AazxQ/XtRuAU
+MA+O/oYM/ph2Ne3ESvYfqheJm8WWFAM7DHYS7F4l/tOZyWl6TNaUuGplt0M0cCDpENODQZkM
+sUjjnBTnO6IESOrM3kfLtMtcuOlqXCrG/cHqgYyLqv+ZeHHwhBnLXFKAbrgdyq+NbbiOiMpX
+z9+numuXn9BwrZnwn/PsZrYi9GC25aL7xFW+sHBsmhHLOxgKH5M/U0y+Qo2tK1pi4NTjGi1t
+q8R9KXq9nnM68qiafHB9Qf5GNGvV/MGgU0+2xm0tMaR6qGOuGX4XzaVoOMK5a0JUaDHSEPxt
+xXHvE+QeNBUqw7PXpekC3paYfwwyihaAyOVDGzSMTq8AgPFMYUHWLrUQ9dHn/4yuPltHA3Nv
+Dd/bh5tAwaKJ5cyJoH6J5XrygzHMeyc1l3NCCHsgQziPwIYyGYwPhlKlPpksJBH6PfRJ+0T2
+U8CT+z6DFOKom/YdWIfYBo28lk/ZCqw7kUAxSPTVZwZ+da2rwl6omHcxY8wi+tuj0bYFUU8j
+qWHxGHrzs9TPbLjJ6XJBxF9d8tCQ7AnxT4VAGjYbuPdXN1YMJh7LXuvauFlg709TNdTjyaf9
+Y5IQWR6SQY+Xj4YsBxUty4MUPyOeXYa2OmHLztoUvjpHa+dewJADQVLPZO+F2aIHifmiAAoM
+FKk/fUtyBmKNEW7O1VurCSwF4qSDikM1d5/puxQGuvlvHdzW4iFEUPh3OCkoSKYuU8u0nCyb
+GZlev294OM4H2SOcHVpZBTHL3lRnRljBVIpDvcjvRdZVfr9rcFcyFUmSRYVHd2CxsVpNX/AA
+64OYtQ/OucAVv2Moe9e7+USpjsLw
+
+/
+show errors
+exec spv_print_header
+host sha256sum &&p_script_validador
+Prompt Realizando limpieza..
+exec spv_clean('&&p_nombre'||'0401');
+Prompt invocando script s-01-sga-components.sql
+start s-01-sga-components.sql
+connect sys/&&p_sys_password as sysdba
+set serveroutput on
+Prompt  Iniciando validación - Componentes de la SGA
+Prompt =============================================
+exec spv_check_tables('&&p_nombre'||'0401');
+exec spv_print_ok('Validación concluida');
+exit

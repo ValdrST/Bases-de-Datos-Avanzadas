@@ -1,6 +1,6 @@
 --@Autor: Vicente Romero Andrade
---@Fecha creación:  16/06/2021
---@Descripción:  Script 1 del ejercicio 1 tema 4
+--@Fecha creación:  06/03/2021
+--@Descripción:  Script 1 del ejercicio 4 tema 1
 set serveroutput on
 connect sys/system2 as sysdba
 declare
@@ -11,15 +11,14 @@ select count(*) into v_count
 from all_tables
 where table_name='T01_SGA_COMPONENTS'
 and owner = v_username;
-
 if v_count = 0 then
   execute immediate 'create table '|| v_username ||'.'||'t01_sga_components(
-    memory_target_param number,
-    fixed_size number,
-    variable_size number, 
-    database_buffers number, 
-    redo_buffers number,
-    total_sga number
+    memory_target_param_mb number,
+    fixed_size_mb number,
+    variable_size_mb number, 
+    database_buffers_mb number, 
+    redo_buffers_mb number,
+    total_sga_mb number
   )';
 end if;
 
@@ -88,12 +87,12 @@ end;
 /
 
 insert into vra0401.t01_sga_components(
-  memory_target_param,
-  fixed_size, 
-  variable_size, 
-  database_buffers, 
-  redo_buffers, 
-  total_sga
+  memory_target_param_mb,
+  fixed_size_mb, 
+  variable_size_mb, 
+  database_buffers_mb, 
+  redo_buffers_mb,
+  total_sg_mba
   ) 
   values (
     (select trunc(value/1048576,2) from v$parameter where name='memory_target'),
@@ -144,3 +143,4 @@ insert into vra0401.t05_sga_memory_info(
 insert into vra0401.t06_sga_resizeable_components(
   name
   ) select name from v$sgainfo where resizeable = 'Yes';
+commit;

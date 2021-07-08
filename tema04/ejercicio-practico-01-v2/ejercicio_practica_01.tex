@@ -1,0 +1,138 @@
+\documentclass[journal]{IEEEtran}
+\usepackage[english]{babel}
+
+\usepackage{amssymb, amsmath} %Paquetes matemáticos de la American Mathematical 
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+% Definicio de estilo para el codigo fuente que se cita
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+}
+\lstset{style=mystyle}
+
+\renewcommand{\lstlistingname}{Código}
+
+\ifCLASSINFOpdf
+
+\else
+
+\fi
+
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+\begin{document}
+
+\title{Ejercicio 1 - tema 4 \\ Administración de las estructuras de Memoria}
+%
+\author{Vicente Romero Andrade}
+
+\markboth{Ejercicio 1 - tema 4 Administración de las estructuras de Memoria, Julio~2021}%
+{Shell \MakeLowercase{\textit{et al.}}: }
+% The only time the second header will appear is for the odd numbered pages
+
+\maketitle
+
+
+\IEEEpeerreviewmaketitle
+
+\section{Objetivo}
+% The very first letter is a 2 line initial drop letter followed
+
+\IEEEPARstart{E}{l} objetivo es, Conocer y familiarizarse con las principales vistas y parámetros 
+de la base de datos que muestran o contienen información relevante acerca del uso
+de las diferentes áreas de la SGA.
+
+\section{Desarrollo}
+\subsection{C1.  Exploraciòn de las áreas de memoria}
+\subsubsection{Crear script s-00-crea-usuario.sql que debe crear al usuario vra0401 y le otorgue los privilegios necesarios}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{||c |c| c||} 
+   \hline
+   Pregunta & Respuesta(inciso) &Explicación/justificación.\\ [1.0ex] 
+   \hline
+   P01 & B & Al ser un cierre normal se espera que ya no existan transacciones activas, en este caso se espera a que haga commit el usuario \\ \hline
+   P02 & E & Aun esta la sesión activa por lo que se espera su cierre \\ \hline
+   P03 & B & Se termina la sesión y se termina de ejecutar T5 \\ \hline
+   P04 & A & Se ejecuta sin errores ya que la base de datos estaba en shutdown que es el estado final del cierre \\ \hline
+   P05 & C & En esta fase de modo mount solo se puede acceder si el usuario es administrador \\ \hline
+   P06 & C & Se ejecuta ya que estaba en modo mount que es una antes del modo open \\ \hline
+   P07 & A & Es exitoso ya que esta montada y abierta la base de datos, es como su se hiciera un startup normal \\ \hline
+   P08 & E & Como solo esta la sesión de un usuario y este no esta enmedio de una transacción en curso, se apaga completamente\\ \hline
+   P09 & C & La base de datos se apago de forma correcta por lo que ya no se pueden hacer mas operaciones \\ \hline
+   P10 & C & Se volvio a iniciar sesión con la base abierta por lo que se ejecutan las instrucciones correctamente \\ \hline
+   P11 & D & Se hace rollback ya que asi se espera que actue la base \\ \hline
+   P12 & A & Como se hizo rollback implicito, no se muestra ningun registro \\ \hline
+   P13 & E & Se realiza de manera exitosa ya que no hay transacciones en espera \\  [1ex] 
+   \hline
+  \end{tabular}
+  \caption{Tabla De respuestas}
+  \label{tabla:1}
+  \end{table}
+\subsection{C2. Contenido del archivo eventos.log}
+\begin{lstlisting}[language=bash, caption=eventos.log,label={lst:eventos_log}]
+  sys@vrabda2> shutdown immediate
+  Database closed.
+  Database dismounted.
+  ORACLE instance shut down.
+  sys@vrabda2> startup
+  ORACLE instance started.
+  
+  Total System Global Area  805303360 bytes                                       
+  Fixed Size                  8901696 bytes                                       
+  Variable Size             587202560 bytes                                       
+  Database Buffers          201326592 bytes                                       
+  Redo Buffers                7872512 bytes                                       
+  Database mounted.
+  Database opened.
+  sys@vrabda2> shutdown transactional
+  Database closed.
+  Database dismounted.
+  ORACLE instance shut down.
+  sys@vrabda2> exit
+  
+  
+  vra0301@vrabda2> select * from test2;
+  
+          ID                                                                      
+  ----------                                                                      
+  
+  0 rows selected.
+  \end{lstlisting}
+
+\section{Conclusiones}
+En este ejercicio se exploro el inicio y la detencion de la base de datos, fue util ya que
+existen varias formas de llevar a cabo esta acción las cuales implican algunas acciones 
+que pueden ocurrir segun sea el caso.
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+
+\fi
+
+\end{document}
