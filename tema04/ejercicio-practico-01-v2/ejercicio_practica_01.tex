@@ -68,68 +68,121 @@ de la base de datos que muestran o contienen información relevante acerca del u
 de las diferentes áreas de la SGA.
 
 \section{Desarrollo}
-\subsection{C1.  Exploraciòn de las áreas de memoria}
-\subsubsection{Crear script s-00-crea-usuario.sql que debe crear al usuario vra0401 y le otorgue los privilegios necesarios}
-
-\begin{table}[H]
+\subsection{C1.  Código empleado para crear y poblar la tabla t01\_sga\_components}
+\begin{lstlisting}[language=sql, caption=t01\_sga\_components,label={lst:codigo1}]
+declare
+  v_count number;
+  v_username varchar2(30) := 'VRA0401';
+begin
+  select count(*) into v_count
+  from all_tables
+  where table_name='T01_SGA_COMPONENTS'
+  and owner = v_username;
+  if v_count > 0 then
+    execute immediate 'drop table '|| v_username ||'.'||'t01_sga_components';
+  end if;
+  execute immediate 'create table '|| v_username ||'.'||'t01_sga_components(
+    memory_target_param number,
+    fixed_size number,
+    variable_size number, 
+    database_buffers number, 
+    redo_buffers number,
+    total_sga number
+    )';
+end;
+/
+insert into vra0401.t01_sga_components(
+  memory_target_param_mb,
+  fixed_size_mb, 
+  variable_size_mb, 
+  database_buffers_mb, 
+  redo_buffers_mb,
+  total_sg_mba
+  ) 
+  values (
+    (select trunc(value/1048576,2) from v$parameter where name='memory_target'),
+    (select trunc(value/1048576,2) from v$sga where name = 'Fixed Size'),
+    (select trunc(value/1048576,2) from v$sga where name = 'Variable Size'),
+    (select trunc(value/1048576,2) from v$sga where name = 'Database Buffers'),
+    (select trunc(value/1048576,2) from v$sga where name = 'Redo Buffers'),
+    (select SUM(trunc(value/1048576,2)) from v$sga)
+  );
+\end{lstlisting}
+\subsection{C2. Respuesta del inciso E del punto 1.2}
+\begin{figure}[H]
   \centering
-  \begin{tabular}{||c |c| c||} 
-   \hline
-   Pregunta & Respuesta(inciso) &Explicación/justificación.\\ [1.0ex] 
-   \hline
-   P01 & B & Al ser un cierre normal se espera que ya no existan transacciones activas, en este caso se espera a que haga commit el usuario \\ \hline
-   P02 & E & Aun esta la sesión activa por lo que se espera su cierre \\ \hline
-   P03 & B & Se termina la sesión y se termina de ejecutar T5 \\ \hline
-   P04 & A & Se ejecuta sin errores ya que la base de datos estaba en shutdown que es el estado final del cierre \\ \hline
-   P05 & C & En esta fase de modo mount solo se puede acceder si el usuario es administrador \\ \hline
-   P06 & C & Se ejecuta ya que estaba en modo mount que es una antes del modo open \\ \hline
-   P07 & A & Es exitoso ya que esta montada y abierta la base de datos, es como su se hiciera un startup normal \\ \hline
-   P08 & E & Como solo esta la sesión de un usuario y este no esta enmedio de una transacción en curso, se apaga completamente\\ \hline
-   P09 & C & La base de datos se apago de forma correcta por lo que ya no se pueden hacer mas operaciones \\ \hline
-   P10 & C & Se volvio a iniciar sesión con la base abierta por lo que se ejecutan las instrucciones correctamente \\ \hline
-   P11 & D & Se hace rollback ya que asi se espera que actue la base \\ \hline
-   P12 & A & Como se hizo rollback implicito, no se muestra ningun registro \\ \hline
-   P13 & E & Se realiza de manera exitosa ya que no hay transacciones en espera \\  [1ex] 
-   \hline
-  \end{tabular}
-  \caption{Tabla De respuestas}
-  \label{tabla:1}
-  \end{table}
-\subsection{C2. Contenido del archivo eventos.log}
-\begin{lstlisting}[language=bash, caption=eventos.log,label={lst:eventos_log}]
-  sys@vrabda2> shutdown immediate
-  Database closed.
-  Database dismounted.
-  ORACLE instance shut down.
-  sys@vrabda2> startup
-  ORACLE instance started.
-  
-  Total System Global Area  805303360 bytes                                       
-  Fixed Size                  8901696 bytes                                       
-  Variable Size             587202560 bytes                                       
-  Database Buffers          201326592 bytes                                       
-  Redo Buffers                7872512 bytes                                       
-  Database mounted.
-  Database opened.
-  sys@vrabda2> shutdown transactional
-  Database closed.
-  Database dismounted.
-  ORACLE instance shut down.
-  sys@vrabda2> exit
-  
-  
-  vra0301@vrabda2> select * from test2;
-  
-          ID                                                                      
-  ----------                                                                      
-  
-  0 rows selected.
-  \end{lstlisting}
-
+  \includegraphics[scale=.50]{captura_1.png}
+   \caption{catura}
+   \label{fig:validador_1}
+\end{figure}
+\subsection{C3. Descripción de los ajustes de memoria}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=.40]{captura_4.png}
+   \caption{tiempo de conteo}
+   \label{fig:validador_2}
+\end{figure}
+No existio reajuste ya que existia un valor de db buffer cache adecuado para la operación a realizar.
+\subsection{C4. Mostrar el contenido de cada una de las tablas t0* creadas en este ejercicio excepto la tabla de cadenas aleatorias}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=.20]{captura_t01.png}
+   \caption{tabla t01}
+   \label{fig:validador_t01}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=.20]{captura_t02.png}
+   \caption{tabla t02}
+   \label{fig:validador_t02}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=.40]{captura_t03.png}
+   \caption{tabla t03}
+   \label{fig:validador_t03}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=.40]{captura_t04.png}
+   \caption{tabla t04}
+   \label{fig:validador_t04}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=.40]{captura_t05.png}
+   \caption{tabla t05}
+   \label{fig:validador_t05}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=.40]{captura_t06.png}
+   \caption{tabla t06}
+   \label{fig:validador_t06}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=.20]{captura_5.png}
+   \caption{tabla t07}
+   \label{fig:validador_t07}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=.20]{captura_6.png}
+   \caption{tabla t07}
+   \label{fig:validador_t09}
+\end{figure}
+\subsection{C5. Resultado del validador}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=.20]{captura_2.png}
+   \caption{resultado validador}
+   \label{fig:validador_val}
+\end{figure}
 \section{Conclusiones}
-En este ejercicio se exploro el inicio y la detencion de la base de datos, fue util ya que
-existen varias formas de llevar a cabo esta acción las cuales implican algunas acciones 
-que pueden ocurrir segun sea el caso.
+En este ejercicio se revisaron las estructuras de memoria dentro de las areas de SGA,
+fue interesante ver cuales son las que se pueden consultar usando diccionario de datos,
+el unico detalle es que no se pudo apreciar la reasignación de memoria.
 \ifCLASSOPTIONcaptionsoff
   \newpage
 

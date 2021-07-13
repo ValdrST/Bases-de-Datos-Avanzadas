@@ -3,8 +3,6 @@
 --@Descripción:  Script 2 del ejercicio 4 tema 1
 set serveroutput on
 connect sys/system2 as sysdba
-shutdown
-startup
 declare
 v_count number;
 v_username varchar2(30) := 'VRA0401';
@@ -38,7 +36,7 @@ if v_count = 0 then
 end if;
 end;
 /
-insert into vra0401.t08_random_data(
+insert into vra0401.t07_sga_resize_ops(
   component,
     oper_type,
     parameter, 
