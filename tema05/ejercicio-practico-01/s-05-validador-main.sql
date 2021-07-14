@@ -11,12 +11,12 @@
 --
 -- Nombre del alumno empleado como prefijo para crear usuarios en la BD
 --
-define p_nombre='jorge'
+define p_nombre='vra'
 
 --
 -- Password del usuario creado en este ejercicio práctico.
 --
-define p_usr_password='jorge'
+define p_usr_password='VRA0501'
 
 --
 -- Password del usuario sys
@@ -27,7 +27,7 @@ define p_sys_password='system2'
 --
 -- Nombre de la instancia
 --
-define p_instance_name ='jrcbda2'
+define p_instance_name ='vrabda2'
 
 
 --- ============= Las siguientes configuraciones ya no requieren cambiarse====

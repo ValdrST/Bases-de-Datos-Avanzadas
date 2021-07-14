@@ -3,7 +3,7 @@
 --@Descripción:  Script 2 del ejercicio 1 tema 5
 whenever sqlerror exit rollback
 set serveroutput on
-connect sys@vrabda2_dedicated/system2 as sysdba
+connect sys@vrabda2_dedicated as sysdba
 
 declare
   v_count number;
@@ -39,7 +39,7 @@ osuser,process,port)
 select 1,sid,logon_time,username,status,server,
     osuser,process,port from v$session where username = 'SYS';
 --B
-connect sys@vrabda2_shared/system2 as sysdba
+connect sys@vrabda2_shared as sysdba
 
 insert into vra0501.t01_session_data(
 id,sid,logon_time,username,status,server,
@@ -48,7 +48,7 @@ select 2,sid,logon_time,username,status,server,
     osuser, process,port from v$session where username = 'SYS';
 
 --C
-connect vra0501@vrabda2_dedicated/system2 as sysdba
+connect vra0501@vrabda2_dedicated as sysdba
 
 insert into vra0501.t01_session_data(
 id,sid,logon_time,username,status,server,
@@ -57,7 +57,7 @@ select 3,sid,logon_time,username,status,server,
     osuser, process,port from v$session where username = 'VRA0501';
 
 --D
-connect vra0501@vrabda2_shared/system2 as sysdba
+connect vra0501@vrabda2_shared as sysdba
 
 insert into vra0501.t01_session_data(
 id,sid,logon_time,username,status,server,
