@@ -41,17 +41,13 @@
 \else
 
 \fi
-
-\hyphenation{op-tical net-works semi-conduc-tor}
-
-
 \begin{document}
 
-\title{Ejercicio 1 - tema 5 \\ Administración de procesos}
+\title{Ejercicio 2 - tema 6 \\ Estructuras lógicas de almacenamiento - Segmentos}
 %
 \author{Vicente Romero Andrade}
 
-\markboth{Ejercicio 1 - tema 5 Administración de procesos, Julio~2021}%
+\markboth{Ejercicio 2 - tema 6 Estructuras lógicas de almacenamiento - Segmentos, Julio~2021}%
 {Shell \MakeLowercase{\textit{et al.}}: }
 % The only time the second header will appear is for the odd numbered pages
 
@@ -63,10 +59,9 @@
 \section{Objetivo}
 % The very first letter is a 2 line initial drop letter followed
 
-\IEEEPARstart{E}{l} objetivo es comprender y practicar el uso del modo dedicado y  
-compartido empleado para crear conexiones hacia una instancia de base de datos.    
-Revisar y familiarizarse con el uso de las vistas del diccionario de datos asociadas con sesiones, 
-procesos de background y procesos foreground.
+\IEEEPARstart{E}{l} objetivo es comprender el mecanismo de creación de los distintos 
+tipos de segmentos a partir de la creación de una tabla. Explorar las vistas del diccionario
+de datos para verificar la creación de segmentos asociados a los objetos de un usuario.
 
 \section{Desarrollo}
 \subsection{C1. s-01-config-compartido.sql y respuesta del inciso C}
@@ -489,9 +484,6 @@ whenever sqlerror continue
 ps -ef | grep oracle
 \end{lstlisting}
 \section{Conclusiones}
-En ese ejercicio se comprendio mejor la forma en la que los procesos son administrados y 
-creados por el manejador de base de datos. Se puede una apreciar una estructura similar a la de 
-un sistema operativo completo. El ejercicio estuvie bien para ejemplificar todo lo anterior.
 \ifCLASSOPTIONcaptionsoff
   \newpage
 
