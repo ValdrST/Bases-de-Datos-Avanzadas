@@ -3,7 +3,7 @@
 --@Descripción:  Script 2 del ejercicio 1 tema 5
 whenever sqlerror exit rollback
 set serveroutput on
-connect sys@vrabda2_dedicated as sysdba
+connect sys@vrabda2_dedicated/system2 as sysdba
 
 declare
   v_count number;
@@ -19,7 +19,7 @@ begin
   if v_count > 0 then
     execute immediate 'drop table '|| v_username ||'.'||v_table;
   end if;
-  execute immedaite 'create table '|| v_username ||'.'||v_table||'(
+  execute immediate 'create table '|| v_username ||'.'||v_table||'(
     id number,
     sid number,
     logon_time date,
@@ -38,32 +38,35 @@ id,sid,logon_time,username,status,server,
 osuser,process,port)
 select 1,sid,logon_time,username,status,server,
     osuser,process,port from v$session where username = 'SYS';
+commit;
 --B
-connect sys@vrabda2_shared as sysdba
+connect sys@vrabda2_shared/system2 as sysdba
 
 insert into vra0501.t01_session_data(
 id,sid,logon_time,username,status,server,
 osuser, process,port) 
 select 2,sid,logon_time,username,status,server,
     osuser, process,port from v$session where username = 'SYS';
+commit;
 
 --C
-connect vra0501@vrabda2_dedicated as sysdba
+connect VRA0501@vrabda2_dedicated/VRA0501
 
 insert into vra0501.t01_session_data(
 id,sid,logon_time,username,status,server,
 osuser, process,port) 
 select 3,sid,logon_time,username,status,server,
     osuser, process,port from v$session where username = 'VRA0501';
+commit;
 
 --D
-connect vra0501@vrabda2_shared as sysdba
+connect VRA0501@vrabda2_shared/VRA0501
 
 insert into vra0501.t01_session_data(
 id,sid,logon_time,username,status,server,
 osuser, process,port) 
 select 4,sid,logon_time,username,status,server,
     osuser, process,port from v$session where username = 'VRA0501';
-
+commit;
 
 whenever sqlerror continue
