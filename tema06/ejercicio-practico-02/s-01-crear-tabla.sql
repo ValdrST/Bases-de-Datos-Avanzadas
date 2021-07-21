@@ -1,6 +1,6 @@
 --@Autor: Vicente Romero Andrade
 --@Fecha creación:  20/07/2021
---@Descripción:  Script 2 del ejercicio 2 tema 6
+--@Descripción:  Script 2 del ejercicio 4 tema 6
 whenever sqlerror exit rollback
 set serveroutput on
 connect VRA0602/VRA0602
