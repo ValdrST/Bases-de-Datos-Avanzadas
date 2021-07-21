@@ -1,0 +1,108 @@
+\documentclass[journal]{IEEEtran}
+\usepackage[english]{babel}
+
+\usepackage{amssymb, amsmath} %Paquetes matemáticos de la American Mathematical 
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+% Definicio de estilo para el codigo fuente que se cita
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+}
+\lstset{style=mystyle}
+
+\renewcommand{\lstlistingname}{Código}
+
+\ifCLASSINFOpdf
+
+\else
+
+\fi
+\begin{document}
+
+\title{Ejercicio 5 - tema 6 \\ Administración básica de tablespaces}
+%
+\author{Vicente Romero Andrade}
+
+\markboth{Ejercicio 5 - tema 6 Administración básica de tablespaces, Julio~2021}%
+{Shell \MakeLowercase{\textit{et al.}}: }
+% The only time the second header will appear is for the odd numbered pages
+
+\maketitle
+
+
+\IEEEpeerreviewmaketitle
+
+\section{Objetivo}
+% The very first letter is a 2 line initial drop letter followed
+
+\IEEEPARstart{E}{l} objetivo es comprender y familiarizarse con las diferentes opciones y configuraciones 
+empleadas para crear tablespaces, así como la asignación de tablespaces por default a un usuario en particular.
+\section{Desarrollo}
+\subsection{sentencias}
+\begin{lstlisting}[language=sql, caption=s-00-crea-tablespace.sql,label={lst:codigo1}]
+  --@Autor: Vicente Romero Andrade
+  whenever sqlerror exit rollback
+  set serveroutput on
+  connect sys/system2 as sysdba
+  --A
+  create tablespace store_tbs1 
+    datafile '/u01/app/oracle/oradata/VRABDA2/store_tbs01.dbf' 
+    size 20M
+    autoextent off
+    extent management local autoallocate
+    segment space management auto;
+  --B
+  create tablespace store_tbs_multiple
+    datafile '/u01/app/oracle/oradata/VRABDA2/store_tbs_multiple_01.dbf' size 10M,
+    '/u01/app/oracle/oradata/VRABDA2/store_tbs_multiple_02.dbf' size 10M,
+    '/u01/app/oracle/oradata/VRABDA2/store_tbs_multiple_03.dbf' size 10M;
+  --C
+  create tablespace store_tbs_custom
+    datafile '/u01/app/oracle/oradata/VRABDA2/store_tbs_custom_01.dbf' size 10M reuse
+    autoextend on next 5m maxsize 30m
+    blocksize 8k
+    nologging
+    offline
+    extent management local uniform size 64k
+    segment space management auto;
+  --D
+  CREATE USER store_user IDENTIFIED BY store_user quota unlimited on store_tbs1 default tablespace store_tbs1;
+  GRANT CONNECT TO store_user;
+  GRANT CREATE TABLE TO store_user;
+  
+  whenever sqlerror continue
+  
+\end{lstlisting}
+\section{Conclusiones}
+Se reviso la sintaxis basica para crear tablespaces con configuraciones particulares, asi como la asignación del usuario 
+que hara uso de las mismas.
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+
+\fi
+
+\end{document}
