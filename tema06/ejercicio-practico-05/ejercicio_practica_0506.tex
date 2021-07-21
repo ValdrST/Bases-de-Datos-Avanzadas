@@ -63,64 +63,43 @@
 empleadas para crear tablespaces, así como la asignación de tablespaces por default a un usuario en particular.
 \section{Desarrollo}
 \subsection{sentencias}
-\begin{lstlisting}[language=sql, caption=s-00-consulta-tablespaces.sql,label={lst:codigo1}]
+\begin{lstlisting}[language=sql, caption=s-00-crea-tablespace.sql,label={lst:codigo1}]
+  --@Autor: Vicente Romero Andrade
   whenever sqlerror exit rollback
   set serveroutput on
   connect sys/system2 as sysdba
   --A
-  select
-    TABLESPACE_NAME,
-    BLOCK_SIZE,
-    INITIAL_EXTENT,
-    NEXT_EXTENT,
-    MAX_SIZE,
-    STATUS,
-    CONTENTS,
-    LOGGING
-  from DBA_TABLESPACES
+  create tablespace store_tbs1 
+    datafile '/u01/app/oracle/oradata/VRABDA2/store_tbs01.dbf' 
+    size 20M
+    autoextent off
+    extent management local autoallocate
+    segment space management auto;
   --B
-  select
-    TABLESPACE_NAME,
-    EXTENT_MANAGEMENT,
-    SEGMENT_SPACE_MANAGEMENT,
-    BIGFILE,
-    ENCRYPTED
-  from DBA_TABLESPACES;
+  create tablespace store_tbs_multiple
+    datafile '/u01/app/oracle/oradata/VRABDA2/store_tbs_multiple_01.dbf' size 10M,
+    '/u01/app/oracle/oradata/VRABDA2/store_tbs_multiple_02.dbf' size 10M,
+    '/u01/app/oracle/oradata/VRABDA2/store_tbs_multiple_03.dbf' size 10M;
   --C
-  select
-         D.USERNAME,
-         D.DEFAULT_TABLESPACE,
-         D.TEMPORARY_TABLESPACE,
-         trunc(DT.BYTES/(1024*1024),2) as QUOTA_MB,
-         DT.BLOCKS
-  from DBA_USERS D
-      join DBA_TS_QUOTAS DT
-          on DT.USERNAME = D.USERNAME;
+  create tablespace store_tbs_custom
+    datafile '/u01/app/oracle/oradata/VRABDA2/store_tbs_custom_01.dbf' size 10M reuse
+    autoextend on next 5m maxsize 30m
+    blocksize 8k
+    nologging
+    offline
+    extent management local uniform size 64k
+    segment space management auto;
+  --D
+  CREATE USER store_user IDENTIFIED BY store_user quota unlimited on store_tbs1 default tablespace store_tbs1;
+  GRANT CONNECT TO store_user;
+  GRANT CREATE TABLE TO store_user;
+  
   whenever sqlerror continue
   
 \end{lstlisting}
-\begin{figure}[H]
-  \centering
-  \includegraphics[scale=.22]{captura_1.png}
-   \caption{Salida punto A}
-   \label{fig:validador_1}
-\end{figure}
-\begin{figure}[H]
-  \centering
-  \includegraphics[scale=.22]{captura_2.png}
-   \caption{Salida punto B}
-   \label{fig:validador_2}
-\end{figure}
-\begin{figure}[H]
-  \centering
-  \includegraphics[scale=.22]{captura_3.png}
-   \caption{Salida punto C}
-   \label{fig:validador_3}
-\end{figure}
-
 \section{Conclusiones}
-Se comprendio de manera exitosa el concepto de tablespaces, para esto se exploraron las vistas y 
-tablas del diccionario de datos asociadas a las mismas.
+Se reviso la sintaxis basica para crear tablespaces con configuraciones particulares, asi como la asignación del usuario 
+que hara uso de las mismas.
 \ifCLASSOPTIONcaptionsoff
   \newpage
 

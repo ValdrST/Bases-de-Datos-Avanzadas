@@ -3,6 +3,7 @@
 --@Descripción:  Script 1 del ejercicio 5 tema 6
 whenever sqlerror exit rollback
 set serveroutput on
+connect sys/system2 as sysdba
 --A
 create tablespace store_tbs1 
   datafile '/u01/app/oracle/oradata/VRABDA2/store_tbs01.dbf' 
@@ -25,9 +26,8 @@ create tablespace store_tbs_custom
   extent management local uniform size 64k
   segment space management auto;
 --D
-
-
-
-
+CREATE USER store_user IDENTIFIED BY store_user quota unlimited on store_tbs1 default tablespace store_tbs1;
+GRANT CONNECT TO store_user;
+GRANT CREATE TABLE TO store_user;
 
 whenever sqlerror continue
