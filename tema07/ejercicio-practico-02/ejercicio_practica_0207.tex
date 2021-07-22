@@ -193,21 +193,52 @@ específico configurado previamente
 \end{figure}
 \begin{figure}[H]
   \centering
-  \includegraphics[scale=.50]{captura_b.png}
+  \includegraphics[scale=.50]{captura_4.png}
    \caption{Salida punto B}
    \label{fig:validador_2}
 \end{figure}
 \begin{figure}[H]
   \centering
-  \includegraphics[scale=.50]{captura_1.png}
+  \includegraphics[scale=.19]{captura_1.png}
    \caption{Salida punto E}
-   \label{fig:validador_2}
+   \label{fig:validador_3}
 \end{figure}
-
+\subsubsection{¿Qué data files se usaron para inicializar su segmento?}
+Se uso /u03/app/oracle/oradata/VRABDA2/store\_tbs\_multiple\_02.dbf
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=.19]{captura_2.png}
+   \caption{Salida punto G}
+   \label{fig:validador_4}
+\end{figure}
+\subsubsection{¿Qué diferencias se observan?}
+El numero de bloques reservados y el total de MB usados
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=.19]{captura_3.png}
+   \caption{Salida punto H}
+   \label{fig:validador_5}
+\end{figure}
+\subsubsection{¿Qué diferencias se observan?} 
+en el numero de extensiones, el total de MB y los blques
+\subsubsection{¿Cuántas extensiones hasta el momento se han reservado?}
+19
+\subsubsection{¿Cuál es el espacio total reservado hasta el momento?}
+4 MB
+\subsubsection{¿Qué sucede con los demás data files que integran a este tablespace?}
+Aun no se usan ya que aun hay espacio en el primer datafile
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=.35]{captura_5.png}
+   \caption{Salida punto I}
+   \label{fig:validador_6}
+\end{figure}
+\subsubsection{¿Qué diferencias se observan?} 
+El numero de bloques y MB libres disminuyo
 \section{Conclusiones}
-Se encontro una forma eficiente de consultar los segmentos creados en una tabla, 
-el unico incoveniente es que estos dependen de que sean creados con el nombre de la tabla 
-para su busqueda.
+Fue un ejercicio que demostro la forma de poder monitorear el espacio de almacenamiento 
+que se va ocupando en una base de datos, este es ocupado en los datafiles y se distribuye de una 
+forma secuencial.
 \ifCLASSOPTIONcaptionsoff
   \newpage
 
