@@ -1,0 +1,148 @@
+\documentclass[journal]{IEEEtran}
+\usepackage[english]{babel}
+
+\usepackage{amssymb, amsmath} %Paquetes matemáticos de la American Mathematical 
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+% Definicio de estilo para el codigo fuente que se cita
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+}
+\lstset{style=mystyle}
+
+\renewcommand{\lstlistingname}{Código}
+
+\ifCLASSINFOpdf
+
+\else
+
+\fi
+\begin{document}
+
+\title{Proyecto final \\ Bases de Datos Avanzadas}
+%
+\author{Vicente Romero Andrade}
+
+\markboth{Proyecto final Bases de Datos Avanzadas, Agosto~2021}%
+{Shell \MakeLowercase{\textit{et al.}}: }
+% The only time the second header will appear is for the odd numbered pages
+
+\maketitle
+
+
+\IEEEpeerreviewmaketitle
+
+\section{Objetivo}
+% The very first letter is a 2 line initial drop letter followed
+
+\IEEEPARstart{E}{l} objetivo de este proyecto es poner en práctica lo visto a lo largo 
+del curso.
+
+\section{Creación de la base de datos}
+\subsection{Resumen de scripts creados}
+\begin{table}[H]
+  \centering
+  \resizebox{\linewidth}{!}{\begin{tabular}{|c | c | c|} 
+   \hline
+   Num. Script & Nombre del script & Descripción \\ [0.5ex] 
+   \hline
+   1 & s-01-crea-directorios.sh & Crea los directorios que simularan los discos asdasdasdasdasda\\ 
+   \hline
+   2 & s-02-crea-pfile.sh & Crea el pfile y el archivo passwords \\
+   \hline
+   3 & s-03-crear-spfile.sql & Crea el archivo de spfile  \\
+   \hline
+   4 & s-04-crear-base.sql & Crea la base de datos asi como sus configuraciones basicas \\
+   \hline
+   5 & s-05-crear-diccionario-datos.sql & Crea el diccionario de datos de la base \\
+   \hline
+   6 & s-06-crear-tablespaces.sql & Crea los tablespaces de la base de datos \\ [1ex] 
+   \hline
+  \end{tabular}}
+  \caption{Resumen scripts creados}
+  \label{tabla:1}
+\end{table}
+\subsection{Configuraciones de la base de datos}
+\begin{table}[H]
+  \centering
+  \resizebox{\linewidth}{!}{\begin{tabular}{|c | c | c|} 
+   \hline
+   Configuración & Descripción \\ [0.5ex] 
+   \hline
+   Número y ubicación de los archivos de control & .\\ 
+   \hline
+   Propuesta de grupos de REDO & .\\ 
+   \hline
+   Propuesta de juego de caracteres & .\\ 
+   \hline
+   Tamaño del bloque de datos & .\\ 
+   \hline
+   Lista de parámetros que serán configurados al crear la base de datos &
+    .\\
+    \hline
+    Archivo passwords & .\\ [1ex] 
+   \hline
+  \end{tabular}}
+  \caption{Configuraciones de la base de datos}
+  \label{tabla:2}
+\end{table}
+\subsection{Módulos del sistema}
+\begin{table}[H]
+  \centering
+  \resizebox{\linewidth}{!}{\begin{tabular}{|c | c | c|} 
+   \hline
+   Nombre del módulo & Descripción & Usuario \\ [0.5ex] 
+   \hline
+   Administración de usuarios & Es el modulo que gestionara los datos de los usuarios asi como los pagos y planes de suscripción & admin\_usuario \\ 
+   \hline
+   Administración de multimedia & Es el modulo que gestionara los datos multimedia asi como el contenido relacionado a sus autores & admin\_multimedia \\  [1ex] 
+   \hline
+  \end{tabular}}
+  \caption{Módulos del sistema}
+  \label{tabla:3}
+\end{table}
+\subsection{Diseño lógico de la base de datos}
+\begin{table}[H]
+  \centering
+  \resizebox{\linewidth}{!}{\begin{tabular}{|c | c | c|} 
+   \hline
+   Nombre del módulo & Descripción & Usuario \\ [0.5ex] 
+   \hline
+   Administración de usuarios & Es el modulo que gestionara los datos de los usuarios asi como los pagos y planes de suscripción & admin\_usuario \\ 
+   \hline
+   Administración de multimedia & Es el modulo que gestionara los datos multimedia asi como el contenido relacionado a sus autores & admin\_multimedia \\  [1ex] 
+   \hline
+  \end{tabular}}
+  \caption{Módulos del sistema}
+  \label{tabla:4}
+\end{table}
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+
+\fi
+
+\end{document}
