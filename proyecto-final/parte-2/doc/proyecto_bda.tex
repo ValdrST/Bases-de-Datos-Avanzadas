@@ -8,6 +8,7 @@
 \usepackage{hyperref}
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage{multirow}
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
@@ -176,71 +177,102 @@ del curso.
 \subsection{Esquema de indexado}
 \begin{table}[H]
   \centering
-  \resizebox{\linewidth}{!}{\begin{tabular}{|c | c | c|c|} 
+  \resizebox{\linewidth}{!}{\begin{tabular}{|c | c | c | c |} 
    \hline
    Nombre de la tabla & Nombre del índice & Tipo & Propósito \\ [0.5ex] 
    \hline
-   USUARIO & USUARIO\_PK & PRIMARY KEY & Llave primaria de la tabla usuario \\
+   USUARIO & USUARIO\_USERNAME\_IUK & UNIQUE & Asegura unicidad de username ademas de mejorar consulta usando lower \\
    \hline
-   USUARIO & USUARIO\_USERNAME\_UK & UNIQUE & Asegurar que los nombres de usuario unicos \\
+   CUENTA\_USUARIO & CUENTA\_USUARIO\_CUENTA\_COMPARTIDA\_IUK & UNIQUE & Asegura unicidad de usuario propietario de cuenta y usuario compartido \\
    \hline
-   USUARIO & USUARIO\_PLAN\_SUSCRIPCION\_ID\_FK & FOREIGN KEY & Llave foranea de los planes de suscripción \\
+   DISPOSITIVO & DISPOSITIVO\_USUARIO\_ID\_IX & NON UNIQUE & Mejora desempeño de busqueda de dispositivos de un usuario \\
    \hline
-   CUENTA\_USUARIO & CUENTA\_USUARIO\_PK & PRIMARY KEY & Llave primaria de la tabla cuenta usuario \\
+   PLAYLIST & PLAYLIST\_NOMBRE\_USUARIO\_IUK & UNIQUE & Asegura que un usuario tenga playlist con nombres unicos \\
    \hline
-   CUENTA\_USUARIO & CUENTA\_USUARIO\_USUARIO\_ID\_FK & FOREIGN KEY & Llave foranea de la tabla usuario \\
+   PLAYLIST\_USUARIO & PLAYLIST\_USUARIO\_USUARIO\_PLAYLIST\_IUK & UNIQUE & Asegura que un playlist fuese compartido una vez con un usuario \\
    \hline
-   CUENTA\_USUARIO & CUENTA\_USUARIO\_USUARIO\_PROPIETARIO\_ID\_FK & FOREIGN KEY & Llave foranea de la tabla usuario, del propietario de la cuenta compartida \\
+   TARJETA & TARJETA\_USUARIO\_NUMERO\_IUK & UNIQUE & Asegura que un usuario solo registre una vez la tarjeta \\
    \hline
-   DISPOSITIVO & DISPOSITIVO\_PK & PRIMARY KEY & Llave primaria de la tabla dispositivo \\
+   CARGO\_TARJETA & CARGO\_TARJETA\_FOLIO\_IUK & UNIQUE & Asegura unicidad de folio de cargo y tarjeta \\
    \hline
-   DISPOSITIVO & DISPOSITIVO\_USUARIO\_ID\_FK & FOREIGN KEY & Llave foranea de la tabla usuario \\
+   PLAN\_SUSCRIPCION & PLAN\_SUSCRIPCION\_DATOS\_IUK & UNIQUE & Asegura unicidad de datos de plan suscripción \\
    \hline
-   PLAYLIST & PLAYLIST\_PK & PRIMARY KEY & Llave primaria de  \\
+   COSTO\_VIGENTE\_HISTORICO & COSTO\_VIGENTE\_HISTORICO\_VIGENCIA\_IUK & UNIQUE & Asegura que solo exista un costo en cierta vigencia para un plan \\
    \hline
-   PLAYLIST & PLAYLIST\_USUARIO\_ID\_FK & FOREIGN KEY & Llave foranea de la tabla usuario \\
+   PLAYLIST\_CONTENIDO & PLAYLIST\_CONTENIDO\_MULTIMEDIA\_PLAY\_IUK & UNIQUE & Asegura que solo existe una vez el contenido en el playlist \\
    \hline
-   PLAYLIST\_USUARIO & PLAYLIST\_USUARIO\_PK & PRIMARY KEY & Llave primaria de playlist usuario \\
+   COMENTARIO & COMENTARIO\_USUARIO\_CONTENIDO\_IX & NON UNIQUE & Mejora desempeño de busqueda de comentarios de usuarios en un contenido \\
    \hline
-   TARJETA & TARJETA\_PK & PRIMARY KEY & Llave primaria de playlist usuario \\
+   COMENTARIO & COMENTARIO\_USUARIO\_RESPUESTA\_IX & NON UNIQUE & Mejora desempeño de busqueda de respuestas a comentarios \\
    \hline
-   TARJETA & TARJETA\_USUARIO\_ID\_FK & FOREIGN KEY & Llave foranea a la tabla tarjeta \\
+   CONTENIDO\_MULTIMEDIA & CONTENIDO\_MULTIMEDIA\_CLAVE\_IUK & UNIQUE & Asegura unicidad de la clave \\
    \hline
-   CARGO\_TARJETA & CARGO\_TARJETA\_PK & PRIMARY KEY & Llave primaria de la tabla cargo tarjeta \\
+   CONTENIDO\_MULTIMEDIA & CONTENIDO\_MULTIMEDIA\_NOMBRE\_IX & NON UNIQUE & Mejora desempeño de busqueda por nombre \\
    \hline
-   CARGO\_TARJETA & CARGO\_TARJETA\_TARJETA\_ID\_FK & FOREIGN KEY & Llave foranea a la tabla tarjeta \\
+   GENERO & GENERO\_NOMBRE\_IUK & UNIQUE & Mejora desempeño de busqueda por nombre y asegura unicidad \\
    \hline
-   PLAN\_SUSCRIPCION & PLAN\_SUSCRIPCION\_PK & PRIMARY KEY & Llave primaria de la tabla plan suscripción \\
+   CONTENIDO\_MULTIMEDIA\_AUTOR & CONTENIDO\_MULTIMEDIA\_AUTOR\_AUTOR\_CONTENIDO\_IUK & UNIQUE & Asegura que el autor este asociado una vez al contenido multimedia \\
    \hline
-   PLAN\_SUSCRIPCION & PLAN\_SUSCRIPCION\_CLAVE\_UK & UNIQUE & Asegurar que las claves sean unicas \\
+   AUTOR & AUTOR\_NOMBRE\_REAL\_ARTISTICO\_IUK & UNIQUE & Asegura que el autor exista una vez con el nombre artistico \\
    \hline
-   COSTO\_VIGENTE\_HISTORICO & COSTO\_VIGENTE\_HISTORICO\_PK & PRIMARY KEY & Llave primaria de costo vigente historico \\
+   CONTENIDO\_SECCION & CONTENIDO\_SECCION\_SECUENCIA\_CONTENIDO\_IUK & UNIQUE & Asegura que una secuencia este asociado a solo un contenido \\
    \hline
-   COSTO\_VIGENTE\_HISTORICO & COSTO\_VIGENTE\_HISTORICO\_PLAN\_SUSCRIPCION\_ID\_FK & FOREIGN KEY & Llave foranea a tabla plan suscripción \\
-   \hline
-   COMENTARIO & COMENTARIO\_PK & PRIMARY KEY & Llave primaria tabla comentario \\
-   \hline
-   COMENTARIO & COMENTARIO\_COMENTARIO\_RESPUESTA\_ID\_FK & FOREIGN KEY & Llave foranea a comentario que responde \\
-   \hline
-   COMENTARIO & COMENTARIO\_CONTENIDO\_MULTIMEDIA\_ID\_FK & FOREIGN KEY & Llave foranea a contenido multimedia \\
-   \hline
-   COMENTARIO & COMENTARIO\_USUARIO\_ID\_FK & FOREIGN KEY & Llave foranea a tabla usuario \\
-   \hline
-   CONTENIDO\_MULTIMEDIA & CONTENIDO\_MULTIMEDIA\_PK & PRIMARY KEY & Llave primaria de contenido multimedia \\
-   \hline
-   CONTENIDO\_MULTIMEDIA & CONTENIDO\_MULTIMEDIA\_GENERO\_ID\_FK & FOREIGN KEY & Llave foranea a tabla genero \\
-   \hline
-   CONTENIDO\_MULTIMEDIA & CONTENIDO\_MULTIMEDIA\_CLAVE\_FK & UNIQUE & Asegura que las claves sean unicas \\
-   \hline
-   CONTENIDO\_MULTIMEDIA & CONTENIDO\_MULTIMEDIA\_NOMBRE\_CHK & CHECK & Optimiza las busquedas de contenido usando nombre \\
-   \hline
-   GENERO & GENERO\_PK & PRIMARY KEY & Llave primaria de la tabla genero \\
-   \hline
-   CONTENIDO\_MULTIMEDIA\_AUTOR & CONTENIDO\_MULTIMEDIA\_AUTOR\_PK & PRIMARY KEY & Llave primaria de la tabla contenido multimedia autor \\ [1ex] 
+   REPRODUCCION & REPRODUCCION\_DISPOSITIVO\_CONTENIDO\_IX & NON UNIQUE & Mejora busqueda de reproducciones de cada dispositivo \\ [1ex] 
    \hline
   \end{tabular}}
   \caption{Esquema de indexado}
   \label{tabla:5}
+\end{table}
+\section{Diseño físico básico de la BD}
+\subsection{Definición de tablespaces comunes a los módulos}
+\begin{table}[H]
+  \centering
+  \resizebox{\linewidth}{!}{\begin{tabular}{|c | c |} 
+   \hline
+   Nombre del tablespace & Configuración \\ [0.5ex] 
+   \hline
+   \multirow{6}{4em}{usersPay01} & tamaño inicial de 500M \\
+    & Autoextend al llegar al máximo ilimitada \\
+    & gestion local automatica de extensiones \\
+    & gestion automatica de segmentos \\
+    & Cifrado AES256 \\
+    & ubicación datafile /disk\_3/app/oracle/oradata/VRAPROY/usersPay01.dbf \\
+    \hline
+    \multirow{5}{4em}{multimediaTbs} & tamaño inicial de 500M \\
+    & Autoextend al llegar al máximo ilimitada \\
+    & gestion local automatica de extensiones \\
+    & gestion automatica de segmentos \\
+    & ubicación datafile /disk\_3/app/oracle/oradata/VRAPROY/multimediaTbs01.dbf \\
+    \hline
+    \multirow{5}{4em}{usersTbs} & tamaño inicial de 500M \\
+    & Autoextend al llegar al máximo ilimitada \\
+    & gestion local automatica de extensiones \\
+    & gestion automatica de segmentos \\
+    & ubicación datafile /disk\_2/app/oracle/oradata/VRAPROY/usersTbs01.dbf \\
+    \hline
+    \multirow{5}{4em}{indexesTbs} & tamaño inicial de 200M \\
+    & Autoextend de 10M hasta llegar al máximo de 300M \\
+    & gestion local automatica de extensiones \\
+    & gestion automatica de segmentos \\
+    & ubicación datafile /disk\_3/app/oracle/oradata/VRAPROY/indexTbs01.dbf \\
+    \hline
+    \multirow{7}{6em}{multimediaObjTbs} & tamaño inicial de 1G \\
+    & Tamaño de bloque de 8k \\
+    & Bigfile \\
+    & Autoextend de 256M hasta llegar al máximo ilimitada \\
+    & gestion local automatica de extensiones \\
+    & gestion automatica de segmentos \\
+    & ubicación datafile /disk\_4/app/oracle/oradata/VRAPROY/multimediaObjTbs.dbf \\
+    \hline
+    \multirow{5}{6em}{multimediaUsrTbs} & tamaño inicial de 200M \\
+    & Autoextend al llegar al máximo ilimitada \\
+    & gestion local automatica de extensiones \\
+    & gestion automatica de segmentos \\
+    & ubicación datafile /disk\_5/app/oracle/oradata/VRAPROY/multimediaUsrTbs01.dbf \\
+   \hline
+  \end{tabular}}
+  \caption{Definición de tablespaces comunes a los módulos}
+  \label{tabla:6}
 \end{table}
 \ifCLASSOPTIONcaptionsoff
   \newpage
