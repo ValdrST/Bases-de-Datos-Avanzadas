@@ -130,15 +130,117 @@ del curso.
   \centering
   \resizebox{\linewidth}{!}{\begin{tabular}{|c | c | c|} 
    \hline
-   Nombre del módulo & Descripción & Usuario \\ [0.5ex] 
+   Nombre de la tabla & Nombre del módulo \\ [0.5ex] 
    \hline
-   Administración de usuarios & Es el modulo que gestionara los datos de los usuarios asi como los pagos y planes de suscripción & admin\_usuario \\ 
+   USUARIO & Administración de usuarios \\ 
    \hline
-   Administración de multimedia & Es el modulo que gestionara los datos multimedia asi como el contenido relacionado a sus autores & admin\_multimedia \\  [1ex] 
+   CUENTA\_USUARIO & Administración de usuarios \\ 
+   \hline
+   TARJETA & Administración de usuarios \\ 
+   \hline
+   CARGO\_TARJETA & Administración de usuarios \\ 
+   \hline
+   PLAN\_SUSCRIPCION & Administración de usuarios \\ 
+   \hline
+   COSTO\_VIGENTE\_HISTORICO & Administración de usuarios \\ 
+   \hline
+   DISPOSITIVO & Administración de usuarios \\ 
+   \hline
+   PLAYLIST & Administración de usuarios \\ 
+   \hline
+   PLAYLIST\_CONTENIDO & Administración de multimedia \\ 
+   \hline
+   CONTENIDO\_MULTIMEDIA & Administración de multimedia \\ 
+   \hline
+   CONTENIDO\_MULTIMEDIA\_AUTOR & Administración de multimedia \\ 
+   \hline
+   AUTOR & Administración de multimedia \\ 
+   \hline
+   GENERO & Administración de multimedia \\ 
+   \hline
+   VIDEO & Administración de multimedia \\ 
+   \hline
+   AUDIO & Administración de multimedia \\ 
+   \hline
+   CONTENIDO\_SECCION & Administración de multimedia \\ 
+   \hline
+   REPRODUCCION & Administración de multimedia \\ 
+   \hline
+   COMENTARIO & Administración de multimedia \\ 
+   [1ex] 
    \hline
   \end{tabular}}
-  \caption{Módulos del sistema}
+  \caption{Diseño lógico de la base de datos}
   \label{tabla:4}
+\end{table}
+\subsection{Esquema de indexado}
+\begin{table}[H]
+  \centering
+  \resizebox{\linewidth}{!}{\begin{tabular}{|c | c | c|c|} 
+   \hline
+   Nombre de la tabla & Nombre del índice & Tipo & Propósito \\ [0.5ex] 
+   \hline
+   USUARIO & USUARIO\_PK & PRIMARY KEY & Llave primaria de la tabla usuario \\
+   \hline
+   USUARIO & USUARIO\_USERNAME\_UK & UNIQUE & Asegurar que los nombres de usuario unicos \\
+   \hline
+   USUARIO & USUARIO\_PLAN\_SUSCRIPCION\_ID\_FK & FOREIGN KEY & Llave foranea de los planes de suscripción \\
+   \hline
+   CUENTA\_USUARIO & CUENTA\_USUARIO\_PK & PRIMARY KEY & Llave primaria de la tabla cuenta usuario \\
+   \hline
+   CUENTA\_USUARIO & CUENTA\_USUARIO\_USUARIO\_ID\_FK & FOREIGN KEY & Llave foranea de la tabla usuario \\
+   \hline
+   CUENTA\_USUARIO & CUENTA\_USUARIO\_USUARIO\_PROPIETARIO\_ID\_FK & FOREIGN KEY & Llave foranea de la tabla usuario, del propietario de la cuenta compartida \\
+   \hline
+   DISPOSITIVO & DISPOSITIVO\_PK & PRIMARY KEY & Llave primaria de la tabla dispositivo \\
+   \hline
+   DISPOSITIVO & DISPOSITIVO\_USUARIO\_ID\_FK & FOREIGN KEY & Llave foranea de la tabla usuario \\
+   \hline
+   PLAYLIST & PLAYLIST\_PK & PRIMARY KEY & Llave primaria de  \\
+   \hline
+   PLAYLIST & PLAYLIST\_USUARIO\_ID\_FK & FOREIGN KEY & Llave foranea de la tabla usuario \\
+   \hline
+   PLAYLIST\_USUARIO & PLAYLIST\_USUARIO\_PK & PRIMARY KEY & Llave primaria de playlist usuario \\
+   \hline
+   TARJETA & TARJETA\_PK & PRIMARY KEY & Llave primaria de playlist usuario \\
+   \hline
+   TARJETA & TARJETA\_USUARIO\_ID\_FK & FOREIGN KEY & Llave foranea a la tabla tarjeta \\
+   \hline
+   CARGO\_TARJETA & CARGO\_TARJETA\_PK & PRIMARY KEY & Llave primaria de la tabla cargo tarjeta \\
+   \hline
+   CARGO\_TARJETA & CARGO\_TARJETA\_TARJETA\_ID\_FK & FOREIGN KEY & Llave foranea a la tabla tarjeta \\
+   \hline
+   PLAN\_SUSCRIPCION & PLAN\_SUSCRIPCION\_PK & PRIMARY KEY & Llave primaria de la tabla plan suscripción \\
+   \hline
+   PLAN\_SUSCRIPCION & PLAN\_SUSCRIPCION\_CLAVE\_UK & UNIQUE & Asegurar que las claves sean unicas \\
+   \hline
+   COSTO\_VIGENTE\_HISTORICO & COSTO\_VIGENTE\_HISTORICO\_PK & PRIMARY KEY & Llave primaria de costo vigente historico \\
+   \hline
+   COSTO\_VIGENTE\_HISTORICO & COSTO\_VIGENTE\_HISTORICO\_PLAN\_SUSCRIPCION\_ID\_FK & FOREIGN KEY & Llave foranea a tabla plan suscripción \\
+   \hline
+   COMENTARIO & COMENTARIO\_PK & PRIMARY KEY & Llave primaria tabla comentario \\
+   \hline
+   COMENTARIO & COMENTARIO\_COMENTARIO\_RESPUESTA\_ID\_FK & FOREIGN KEY & Llave foranea a comentario que responde \\
+   \hline
+   COMENTARIO & COMENTARIO\_CONTENIDO\_MULTIMEDIA\_ID\_FK & FOREIGN KEY & Llave foranea a contenido multimedia \\
+   \hline
+   COMENTARIO & COMENTARIO\_USUARIO\_ID\_FK & FOREIGN KEY & Llave foranea a tabla usuario \\
+   \hline
+   CONTENIDO\_MULTIMEDIA & CONTENIDO\_MULTIMEDIA\_PK & PRIMARY KEY & Llave primaria de contenido multimedia \\
+   \hline
+   CONTENIDO\_MULTIMEDIA & CONTENIDO\_MULTIMEDIA\_GENERO\_ID\_FK & FOREIGN KEY & Llave foranea a tabla genero \\
+   \hline
+   CONTENIDO\_MULTIMEDIA & CONTENIDO\_MULTIMEDIA\_CLAVE\_FK & UNIQUE & Asegura que las claves sean unicas \\
+   \hline
+   CONTENIDO\_MULTIMEDIA & CONTENIDO\_MULTIMEDIA\_NOMBRE\_CHK & CHECK & Optimiza las busquedas de contenido usando nombre \\
+   \hline
+   GENERO & GENERO\_PK & PRIMARY KEY & Llave primaria de la tabla genero \\
+   \hline
+   CONTENIDO\_MULTIMEDIA\_AUTOR & CONTENIDO\_MULTIMEDIA\_AUTOR\_PK & PRIMARY KEY & Llave primaria de la tabla contenido multimedia autor \\ [1ex] 
+   \hline
+  \end{tabular}}
+  \caption{Esquema de indexado}
+  \label{tabla:5}
 \end{table}
 \ifCLASSOPTIONcaptionsoff
   \newpage
