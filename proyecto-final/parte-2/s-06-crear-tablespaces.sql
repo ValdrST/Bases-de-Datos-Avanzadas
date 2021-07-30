@@ -8,15 +8,22 @@ set serveroutput on
 
 whenever sqlerror exit rollback;
 
-Prompt Creando tablespace usersPay
-create tablespace usersPay
+Prompt Creando tablespace usersPayTbs
+create tablespace usersPayTbs
 	datafile '/disk_3/app/oracle/oradata/VRAPROY/usersPay01.dbf' 
 	size 500m autoextend on maxsize unlimited
     extent management local autoallocate
    	segment space management auto
 	encryption using 'AES256'
 	default storage(encrypt);
-
+Prompt Creando tablespace undoUsersPayTbs
+create undo tablespace undoUsersPayTbs
+  datafile '/disk_3/app/oracle/oradata/VRAPROY/undoUsersPayTbs01.dbf'  size 50M
+	autoextend on maxsize unlimited
+  extent management local autoallocate
+  segment space management auto
+	encryption using 'AES256'
+	default storage(encrypt);
 Prompt Creando tablespace multimediaTbs
 create tablespace multimediaTbs
 	datafile '/disk_3/app/oracle/oradata/VRAPROY/multimediaTbs01.dbf'
@@ -43,11 +50,4 @@ create bigfile tablespace multimediaObjTbs
    	datafile '/disk_4/app/oracle/oradata/VRAPROY/multimediaObjTbs.dbf'
    	size 1g blocksize 8k autoextend on next 256m maxsize unlimited
    	extent management local autoallocate 
-   	segment space management auto;
-
-Prompt Creando tablespace multimediaUsrTbs
-create tablespace multimediaUsrTbs
-   	datafile '/disk_5/app/oracle/oradata/VRAPROY/multimediaUsrTbs01.dbf'
-   	size 200m autoextend on maxsize unlimited 
-   	extent management local autoallocate
    	segment space management auto;

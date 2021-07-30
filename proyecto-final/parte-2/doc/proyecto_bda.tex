@@ -230,33 +230,86 @@ del curso.
   \resizebox{\linewidth}{!}{\begin{tabular}{|c | c |} 
    \hline
    Nombre del tablespace & Configuración \\ [0.5ex] 
-   \hline
-   \multirow{6}{4em}{usersPay01} & tamaño inicial de 500M \\
-    & Autoextend al llegar al máximo ilimitada \\
-    & gestion local automatica de extensiones \\
-    & gestion automatica de segmentos \\
-    & Cifrado AES256 \\
-    & ubicación datafile /disk\_3/app/oracle/oradata/VRAPROY/usersPay01.dbf \\
-    \hline
-    \multirow{5}{4em}{multimediaTbs} & tamaño inicial de 500M \\
-    & Autoextend al llegar al máximo ilimitada \\
-    & gestion local automatica de extensiones \\
-    & gestion automatica de segmentos \\
-    & ubicación datafile /disk\_3/app/oracle/oradata/VRAPROY/multimediaTbs01.dbf \\
-    \hline
-    \multirow{5}{4em}{usersTbs} & tamaño inicial de 500M \\
-    & Autoextend al llegar al máximo ilimitada \\
-    & gestion local automatica de extensiones \\
-    & gestion automatica de segmentos \\
-    & ubicación datafile /disk\_2/app/oracle/oradata/VRAPROY/usersTbs01.dbf \\
     \hline
     \multirow{5}{4em}{indexesTbs} & tamaño inicial de 200M \\
     & Autoextend de 10M hasta llegar al máximo de 300M \\
     & gestion local automatica de extensiones \\
     & gestion automatica de segmentos \\
     & ubicación datafile /disk\_3/app/oracle/oradata/VRAPROY/indexTbs01.dbf \\
+   \hline
+  \end{tabular}}
+  \caption{Configuración de tablespaces comunes a los módulos}
+  \label{tabla:6}
+\end{table}
+\subsection{Definición de tablespaces por módulo}
+\begin{table}[H]
+  \centering
+  \resizebox{\linewidth}{!}{\begin{tabular}{|c|c|c|} 
+   \hline
+   Nombre del tablespace & Objetivo / Beneficio & Tipo \\ [0.000ex] 
+   \hline
+   usersPayTbs&Guardar de manera segura datos de pagos&users\\
+   \hline
+   undoUsersPayTbs&Guardar datos undo de las transacciones de pagos&undo\\
+   \hline
+   usersTbs&Guardar datos de los usuarios&users\\
+   \hline
+  \end{tabular}}
+  \caption{Definición de tablespaces modulo administración de usuarios}
+  \label{tabla:7}
+\end{table}
+\begin{table}[H]
+  \centering
+  \resizebox{\linewidth}{!}{\begin{tabular}{|c|c|c|} 
+   \hline
+   Nombre del tablespace & Objetivo / Beneficio & Tipo \\ [0.000ex] 
+   \hline
+   multimediaTbs&Guardar datos de los archivos multimedia&users\\
+   \hline
+   multimediaObjTbs&Guardar datos de los archivos clob/blob multimedia&users\\
+   \hline
+  \end{tabular}}
+  \caption{Definición de tablespaces modulo administración de multimedia}
+  \label{tabla:8}
+\end{table}
+\subsection{Configuración de tablespaces por módulo}
+\begin{table}[H]
+  \centering
+  \resizebox{\linewidth}{!}{\begin{tabular}{|c | c |} 
+   \hline
+   Nombre del tablespace & Configuración \\ [0.5ex] 
+   \hline
+   \multirow{6}{4em}{usersPayTbs} & tamaño inicial de 500M \\
+    & Autoextend al llegar al máximo ilimitada \\
+    & gestion local automatica de extensiones \\
+    & gestion automatica de segmentos \\
+    & Cifrado AES256 \\
+    & ubicación datafile /disk\_3/app/oracle/oradata/VRAPROY/usersPay01.dbf \\
     \hline
-    \multirow{7}{6em}{multimediaObjTbs} & tamaño inicial de 1G \\
+   \multirow{6}{6em}{undoUsersPayTbs} & tamaño inicial de 50M \\
+    & Autoextend al llegar al máximo ilimitada \\
+    & gestion local automatica de extensiones \\
+    & gestion automatica de segmentos \\
+    & Cifrado AES256 \\
+    & ubicación datafile /disk\_3/app/oracle/oradata/VRAPROY/usersPay01.dbf \\
+    \hline
+    \multirow{5}{4em}{usersTbs} & tamaño inicial de 500M \\
+    & Autoextend al llegar al máximo ilimitada \\
+    & gestion local automatica de extensiones \\
+    & gestion automatica de segmentos \\
+    & ubicación datafile /disk\_2/app/oracle/oradata/VRAPROY/usersTbs01.dbf \\
+   \hline
+  \end{tabular}}
+  \caption{Configuración tablespaces modulo administración de usuarios}
+  \label{tabla:9}
+\end{table}
+\begin{table}[H]
+  \centering
+  \resizebox{\linewidth}{!}{\begin{tabular}{|c | c |} 
+   \hline
+   Nombre del tablespace & Configuración \\ [0.5ex] 
+   \hline
+   \multirow{7}{6em}{multimediaObjTbs} & tamaño inicial de 1G \\
     & Tamaño de bloque de 8k \\
     & Bigfile \\
     & Autoextend de 256M hasta llegar al máximo ilimitada \\
@@ -264,15 +317,132 @@ del curso.
     & gestion automatica de segmentos \\
     & ubicación datafile /disk\_4/app/oracle/oradata/VRAPROY/multimediaObjTbs.dbf \\
     \hline
-    \multirow{5}{6em}{multimediaUsrTbs} & tamaño inicial de 200M \\
+    \multirow{5}{4em}{multimediaTbs} & tamaño inicial de 500M \\
     & Autoextend al llegar al máximo ilimitada \\
     & gestion local automatica de extensiones \\
     & gestion automatica de segmentos \\
-    & ubicación datafile /disk\_5/app/oracle/oradata/VRAPROY/multimediaUsrTbs01.dbf \\
+    & ubicación datafile /disk\_3/app/oracle/oradata/VRAPROY/multimediaTbs01.dbf \\
    \hline
   \end{tabular}}
-  \caption{Definición de tablespaces comunes a los módulos}
-  \label{tabla:6}
+  \caption{Configuración tablespaces modulo administración de multimedia}
+  \label{tabla:10}
+\end{table}
+\subsection{Asignación de tablespace para tablas de cada módulo}
+\begin{table}[H]
+  \centering
+  \resizebox{\linewidth}{!}{\begin{tabular}{|c|c|} 
+   \hline
+   Nombre de la tabla & Nombre del tablespace \\ [0.1ex] 
+   \hline
+   USUARIO & usersTbs\\
+   \hline
+   PLAN\_SUSCRIPCION & usersTbs\\
+   \hline
+   COSTO\_VIGENTE\_HISTORICO & usersTbs\\
+   \hline
+   CUENTA\_USUARIO & usersTbs\\
+   \hline
+   DISPOSITIVO & usersTbs\\
+   \hline
+   PLAYLIST & usersTbs\\
+   \hline
+   PLAYLIST\_CONTENIDO & usersTbs\\
+   \hline
+   TARJETA & usersPayTbs\\
+   \hline
+   CARGO\_TARJETA & usersPayTbs\\
+   \hline
+  \end{tabular}}
+  \caption{Asignación de tablespace para tablas del módulo de usuarios}
+  \label{tabla:11}
+\end{table}
+\begin{table}[H]
+  \centering
+  \resizebox{\linewidth}{!}{\begin{tabular}{|c|c|} 
+   \hline
+   Nombre de la tabla & Nombre del tablespace \\ [0.1ex] 
+   \hline
+   COMENTARIO & multimediaTbs\\
+   \hline
+   REPRODUCCION & multimediaTbs\\
+   \hline
+   CONTENIDO\_MULTIMEDIA & multimediaTbs\\
+   \hline
+   CONTENIDO\_MULTIMEDIA\_AUTOR & multimediaTbs\\
+   \hline
+   AUTOR & multimediaTbs\\
+   \hline
+   CONTENIDO\_SECCION & multimediaTbs\\
+   \hline
+   GENERO & multimediaTbs\\
+   \hline
+   VIDEO & multimediaTbs\\
+   \hline
+   AUDIO & multimediaTbs\\
+   \hline
+  \end{tabular}}
+  \caption{Asignación de tablespace para tablas del módulo de multimedia}
+  \label{tabla:12}
+\end{table}
+\subsection{Asignación de tablespace para índices de cada módulo}
+\begin{table}[H]
+  \centering
+  \resizebox{\linewidth}{!}{\begin{tabular}{|c|c|c|c|c|} 
+   \hline
+   Nombre del índice & Tipo de índice & Nombre de la tabla & Nombre de la columna & Nombre del tablespace \\ [0.1ex] 
+   \hline
+   USUARIO\_USERNAME\_IUK & UNIQUE & USUARIO & USERNAME &  indexesTbs \\
+   \hline
+   CUENTA\_USUARIO\_CUENTA\_COMPARTIDA\_IUK & UNIQUE & CUENTA\_USUARIO & USUARIO\_PROPIETARIO\_ID, USUARIO\_ID &  indexesTbs \\
+   \hline
+   DISPOSITIVO\_USUARIO\_ID\_IX & NON UNIQUE & DISPOSITIVO & USUARIO\_ID &  indexesTbs \\
+   \hline
+   PLAYLIST\_NOMBRE\_USUARIO\_IUK & UNIQUE & PLAYLIST & USUARIO\_CREADOR\_ID &  indexesTbs \\
+   \hline
+   PLAYLIST\_USUARIO\_USUARIO\_PLAYLIST\_IUK & UNIQUE & PLAYLIST\_USUARIO & USUARIO\_ID, PLAYLIST\_ID &  indexesTbs \\
+   \hline
+   TARJETA\_USUARIO\_NUMERO\_IUK & UNIQUE & TARJETA & USUARIO\_ID, NUMERO &  indexesTbs \\
+   \hline
+   CARGO\_TARJETA\_FOLIO\_IUK & UNIQUE & CARGO\_TARJETA & TARJETA\_ID, FOLIO &  indexesTbs \\
+   \hline
+   PLAN\_SUSCRIPCION\_DATOS\_IUK & UNIQUE & PLAN\_SUSCRIPCION & CLAVE, NOMBRE &  indexesTbs \\
+   \hline
+   COSTO\_VIGENTE\_HISTORICO\_VIGENCIA\_IUK & UNIQUE & COSTO\_VIGENTE\_HISTORICO & PLAN\_SUSCRIPCION\_ID, FECHA\_INICIO, FECHA\_FIN &  indexesTbs \\
+   \hline
+   PLAYLIST\_CONTENIDO\_MULTIMEDIA\_PLAY\_IUK & UNIQUE & PLAYLIST\_CONTENIDO & PLAYLIST\_ID, CONTENIDO\_MULTIMEDIA\_ID &  indexesTbs \\
+   
+   \hline
+  \end{tabular}}
+  \caption{Asignación de tablespace para tablas del módulo de administración de usuarios}
+  \label{tabla:13}
+\end{table}
+\begin{table}[H]
+  \centering
+  \resizebox{\linewidth}{!}{\begin{tabular}{|c|c|c|c|c|} 
+   \hline
+   Nombre del índice & Tipo de índice & Nombre de la tabla & Nombre de la columna & Nombre del tablespace \\ [0.1ex] 
+   \hline
+   COMENTARIO\_USUARIO\_CONTENIDO\_IX & NON UNIQUE & COMENTARIO & CONTENIDO\_MULTIMEDIA\_ID, USUARIO\_ID &  indexesTbs \\
+   \hline
+   COMENTARIO\_USUARIO\_RESPUESTA\_IX & NON UNIQUE & COMENTARIO & COMENTARIO\_RESPUESTA\_ID, USUARIO\_ID, COMENTARIO\_ID &  indexesTbs \\
+   \hline
+   CONTENIDO\_MULTIMEDIA\_CLAVE\_IUK & UNIQUE & CONTENIDO\_MULTIMEDIA & CLAVE &  indexesTbs \\
+   \hline
+   CONTENIDO\_MULTIMEDIA\_NOMBRE\_IUK & UNIQUE & CONTENIDO\_MULTIMEDIA & NOMBRE &  indexesTbs \\
+   \hline
+   GENERO\_NOMBRE\_IUK & UNIQUE & GENERO & NOMBRE &  indexesTbs \\
+   \hline
+   CONTENIDO\_MULTIMEDIA\_AUTOR\_AUTOR\_CONTENIDO\_IUK & UNIQUE & CONTENIDO\_MULTIMEDIA\_AUTOR & CONTENIDO\_MULTIMEDIA\_ID, AUTOR\_ID &  indexesTbs \\
+   \hline
+   AUTOR\_NOMBRE\_REAL\_ARTISTICO\_IUK & UNIQUE & AUTOR & NOMBRE, APELLIDOS, NOMBRE\_ARTISTICO &  indexesTbs \\
+   \hline
+   CONTENIDO\_SECCION\_SECUENCIA\_CONTENIDO\_IUK & UNIQUE & CONTENIDO\_SECCION & ID\_SECUENCIA, CONTENIDO\_MULTIMEDIA\_ID &  indexesTbs \\
+   \hline
+   REPRODUCCION\_DISPOSITIVO\_CONTENIDO\_IX & UNIQUE & REPRODUCCION & CONTENIDO\_MULTIMEDIA\_ID, DISPOSITIVO\_ID &  indexesTbs \\
+   \hline
+  \end{tabular}}
+  \caption{Asignación de tablespace para tablas del módulo de multimedia}
+  \label{tabla:14}
 \end{table}
 \ifCLASSOPTIONcaptionsoff
   \newpage
