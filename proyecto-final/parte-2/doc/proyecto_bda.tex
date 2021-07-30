@@ -444,6 +444,22 @@ del curso.
   \caption{Asignación de tablespace para tablas del módulo de multimedia}
   \label{tabla:14}
 \end{table}
+\subsection{Asignación de tablespaces para columnas CLOB/BLOB de cada módulo}
+\begin{table}[H]
+  \centering
+  \resizebox{\linewidth}{!}{\begin{tabular}{|c|c|c|c|c|} 
+   \hline
+   Nombre de la columna CLOB/BLOB & Nombre de índice asociado a la columna CLOB/BLOB & Nombre de la tabla & Nombre del tablespace para la columna CLOB/BLOB & Nombre del tablespace para el índice de la columna CLOB/BLOB \\ [0.1ex] 
+   \hline
+   LETRA & N/A & AUDIO & multimediaObjTbs & N/A \\
+   \hline
+   CONTENIDO & N/A & CONTENIDO\_SECCION & multimediaObjTbs & N/A \\
+   \hline
+  \end{tabular}}
+  \caption{Asignación de tablespaces para columnas CLOB/BLOB del módulo de multimedia}
+  \label{tabla:15}
+\end{table}
+
 \ifCLASSOPTIONcaptionsoff
   \newpage
 
