@@ -1,14 +1,13 @@
 --@Autor: Vicente Romero Andrade
 --@Fecha creacion:  27/07/2021
 --@Descripcion: Crea base de datos
-connect sys/system2 as sysdba
+connect sys/Hola1234! as sysdba
 Prompt connectando como sys
 set serveroutput on
 
 startup nomount
 
 whenever sqlerror exit rollback;
-
 Prompt Iniciando la creación de la base de datos
 create database vraproy
    user sys identified by system2
@@ -33,18 +32,18 @@ create database vraproy
    national character set AL16UTF16
    extent management local  
    datafile '/u01/app/oracle/oradata/VRAPROY/system01.dbf'
-      size 700m reuse autoextend on next 10240k maxsize unlimited
+      size 700m reuse autoextend on next 1M maxsize unlimited
    sysaux datafile '/u01/app/oracle/oradata/VRAPROY/sysaux01.dbf'
-      size 550m reuse autoextend on next 10240k maxsize unlimited
+      size 550m reuse autoextend on next 1M maxsize unlimited
    default tablespace users
-      datafile '/disk_2/app/oracle/oradata/VRAPROY/usersE101.dbf'
+      datafile '/disk_2/app/oracle/oradata/VRAPROY/users.dbf'
       size 500m reuse autoextend on maxsize unlimited
    default temporary tablespace tempts1
       tempfile '/u01/app/oracle/oradata/VRAPROY/temp01.dbf'
       size 20m reuse autoextend on next 640k maxsize unlimited
    undo tablespace undotbs1
       datafile '/u01/app/oracle/oradata/VRAPROY/undotbs01.dbf'
-      size 200m reuse autoextend on next 5120k maxsize unlimited;
+      size 200m reuse autoextend on next 512k maxsize unlimited;
 
 alter user sys identified by system2;
 alter user system identified by system2;

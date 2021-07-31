@@ -7,9 +7,11 @@
 \usepackage{float}
 \usepackage{hyperref}
 \usepackage{listings}
-\usepackage{xcolor}
+\usepackage[table, svgnames, dvipsnames]{xcolor}
 \usepackage{multirow}
-
+\usepackage{supertabular}
+\usepackage{longtable}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
@@ -43,7 +45,7 @@
 
 \fi
 \begin{document}
-
+\onecolumn
 \title{Proyecto final \\ Bases de Datos Avanzadas}
 %
 \author{Vicente Romero Andrade}
@@ -55,7 +57,6 @@
 \maketitle
 
 
-\IEEEpeerreviewmaketitle
 
 \section{Objetivo}
 % The very first letter is a 2 line initial drop letter followed
@@ -67,7 +68,7 @@ del curso.
 \subsection{Resumen de scripts creados}
 \begin{table}[H]
   \centering
-  \resizebox{\linewidth}{!}{\begin{tabular}{|c | c | c|} 
+  \begin{longtable}{|c | c | c|} 
    \hline
    Num. Script & Nombre del script & Descripción \\ [0.5ex] 
    \hline
@@ -81,40 +82,64 @@ del curso.
    \hline
    5 & s-05-crear-diccionario-datos.sql & Crea el diccionario de datos de la base \\
    \hline
-   6 & s-06-crear-tablespaces.sql & Crea los tablespaces de la base de datos \\ [1ex] 
+   6 & s-06-crear-tablespaces.sql & Crea los tablespaces de la base de datos \\
    \hline
-  \end{tabular}}
+  \end{longtable}
   \caption{Resumen scripts creados}
   \label{tabla:1}
 \end{table}
 \subsection{Configuraciones de la base de datos}
 \begin{table}[H]
   \centering
-  \resizebox{\linewidth}{!}{\begin{tabular}{|c | c | c|} 
+  \begin{longtable}{|c | c | c|} 
    \hline
    Configuración & Descripción \\ [0.5ex] 
    \hline
-   Número y ubicación de los archivos de control & .\\ 
+   \multirow{4}{20em}{Número y ubicación de los archivos de control} & 3 archivo de control\\ 
+   & /u01/app/oracle/oradata/VRAPROY/control01.ctl \\
+   & /disk\_2/app/oracle/oradata/VRAPROY/control02.ctl \\
+   & /disk\_3/app/oracle/oradata/VRAPROY/control03.ctl \\
    \hline
-   Propuesta de grupos de REDO & .\\ 
+   \multirow{13}{20em}{Propuesta de grupos de REDO} & 3 grupos de redo\\
+   & grupo 1\\
+   & /u01/app/oracle/oradata/VRAPROY/redo01a.log\\
+   & /disk\_2/app/oracle/oradata/VRAPROY/redo01b.log\\
+   & /disk\_3/app/oracle/oradata/VRAPROY/redo01c.log\\
+   & grupo 2\\
+   & /u01/app/oracle/oradata/VRAPROY/redo02a.log\\
+   & /disk\_2/app/oracle/oradata/VRAPROY/redo02b.log\\
+   & /disk\_3/app/oracle/oradata/VRAPROY/redo02c.log\\
+   & grupo 3\\
+   & /u01/app/oracle/oradata/VRAPROY/redo03a.log\\
+   & /disk\_2/app/oracle/oradata/VRAPROY/redo03b.log\\
+   & /disk\_3/app/oracle/oradata/VRAPROY/redo03c.log\\
    \hline
-   Propuesta de juego de caracteres & .\\ 
+   \multirow{2}{15em}{Propuesta de juego de caracteres} & AL32UTF8\\
+   & Caracteres nacionales AL16UTF16\\ 
    \hline
-   Tamaño del bloque de datos & .\\ 
+   Tamaño del bloque de datos & default (La misma del SO)\\ 
    \hline
-   Lista de parámetros que serán configurados al crear la base de datos &
-    .\\
+   \multirow{4}{15em}{Archivo passwords}
+   & FILE=\$ORACLE\_HOME/dbs/orapwvraproy \\
+   & FORMAT=12.2 \\
+   & FORCE=Y \\
+   & SYS=Hola1234! \\
     \hline
-    Archivo passwords & .\\ [1ex] 
+    \multirow{5}{28em}{Lista de parámetros que serán configurados al crear la base de datos} 
+    & maxdatafiles 1024\\
+    & maxloghistory 1\\
+    & maxlogfiles 16\\
+    & maxlogmembers 3\\ 
+    & gestion local de extensiones \\
    \hline
-  \end{tabular}}
+  \end{longtable}
   \caption{Configuraciones de la base de datos}
   \label{tabla:2}
 \end{table}
 \subsection{Módulos del sistema}
 \begin{table}[H]
   \centering
-  \resizebox{\linewidth}{!}{\begin{tabular}{|c | c | c|} 
+  \begin{longtable}{|c | l | c|} 
    \hline
    Nombre del módulo & Descripción & Usuario \\ [0.5ex] 
    \hline
@@ -122,14 +147,14 @@ del curso.
    \hline
    Administración de multimedia & Es el modulo que gestionara los datos multimedia asi como el contenido relacionado a sus autores & admin\_multimedia \\  [1ex] 
    \hline
-  \end{tabular}}
+  \end{longtable}
   \caption{Módulos del sistema}
   \label{tabla:3}
 \end{table}
 \subsection{Diseño lógico de la base de datos}
 \begin{table}[H]
   \centering
-  \resizebox{\linewidth}{!}{\begin{tabular}{|c | c | c|} 
+  \begin{longtable}{|c | c | c|} 
    \hline
    Nombre de la tabla & Nombre del módulo \\ [0.5ex] 
    \hline
@@ -170,16 +195,17 @@ del curso.
    COMENTARIO & Administración de multimedia \\ 
    [1ex] 
    \hline
-  \end{tabular}}
+  \end{longtable}
   \caption{Diseño lógico de la base de datos}
   \label{tabla:4}
 \end{table}
 \subsection{Esquema de indexado}
+Se genera el esquema de indices
 \begin{table}[H]
   \centering
-  \resizebox{\linewidth}{!}{\begin{tabular}{|c | c | c | c |} 
+  \begin{longtable}{| c | c | c | L{2.5cm} |} 
    \hline
-   Nombre de la tabla & Nombre del índice & Tipo & Propósito \\ [0.5ex] 
+   Nombre de la tabla & Nombre del índice & Tipo & Propósito \\ [0.0ex] 
    \hline
    USUARIO & USUARIO\_USERNAME\_IUK & UNIQUE & Asegura unicidad de username ademas de mejorar consulta usando lower \\
    \hline
@@ -219,7 +245,7 @@ del curso.
    \hline
    REPRODUCCION & REPRODUCCION\_DISPOSITIVO\_CONTENIDO\_IX & NON UNIQUE & Mejora busqueda de reproducciones de cada dispositivo \\ [1ex] 
    \hline
-  \end{tabular}}
+  \end{longtable}
   \caption{Esquema de indexado}
   \label{tabla:5}
 \end{table}
@@ -227,24 +253,56 @@ del curso.
 \subsection{Definición de tablespaces comunes a los módulos}
 \begin{table}[H]
   \centering
-  \resizebox{\linewidth}{!}{\begin{tabular}{|c | c |} 
+  \begin{tabular}{|c|c|} 
    \hline
    Nombre del tablespace & Configuración \\ [0.5ex] 
+   \hline
+    \multirow{4}{4em}{system} 
+    & tamaño inicial de 700M \\
+    & reusar datafile \\
+    & Autoextend de 1M ilimitado \\
+    & ubicación datafile /u01/app/oracle/oradata/VRAPROY/system01.dbf \\ 
     \hline
+    \multirow{4}{4em}{sysaux} 
+    & tamaño inicial de 500M \\
+    & reusar datafile \\
+    & Autoextend de 1M ilimitado \\
+    & ubicación datafile /u01/app/oracle/oradata/VRAPROY/sysaux01.dbf \\ 
+    \hline
+    \multirow{4}{4em}{users} 
+    & tamaño inicial de 500M \\
+    & Autoextend por default (1M) ilimitado \\
+    & reusar datafile \\
+    & ubicación datafile /disk\_2/app/oracle/oradata/VRAPROY/users.dbf \\ 
+    \hline
+    \multirow{5}{4em}{tempts1}
+    & temporal \\ 
+    & tamaño inicial de 20M \\
+    & Autoextend de 640k ilimitado \\
+    & reusar datafile \\
+    & ubicación datafile /u01/app/oracle/oradata/VRAPROY/temp01.dbf \\
+    \hline
+    \multirow{4}{4em}{undotbs1}
+    & undo \\ 
+    & tamaño inicial de 200M \\
+    & Autoextend de 512k ilimitado \\
+    & reusar datafile \\
+    & ubicación datafile /u01/app/oracle/oradata/VRAPROY/undotbs01.dbf \\
+   \hline
     \multirow{5}{4em}{indexesTbs} & tamaño inicial de 200M \\
     & Autoextend de 10M hasta llegar al máximo de 300M \\
     & gestion local automatica de extensiones \\
     & gestion automatica de segmentos \\
     & ubicación datafile /disk\_3/app/oracle/oradata/VRAPROY/indexTbs01.dbf \\
    \hline
-  \end{tabular}}
+  \end{tabular}
   \caption{Configuración de tablespaces comunes a los módulos}
   \label{tabla:6}
 \end{table}
 \subsection{Definición de tablespaces por módulo}
 \begin{table}[H]
   \centering
-  \resizebox{\linewidth}{!}{\begin{tabular}{|c|c|c|} 
+  \begin{tabular}{|c|c|c|} 
    \hline
    Nombre del tablespace & Objetivo / Beneficio & Tipo \\ [0.000ex] 
    \hline
@@ -254,13 +312,13 @@ del curso.
    \hline
    usersTbs&Guardar datos de los usuarios&users\\
    \hline
-  \end{tabular}}
+  \end{tabular}
   \caption{Definición de tablespaces modulo administración de usuarios}
   \label{tabla:7}
 \end{table}
 \begin{table}[H]
   \centering
-  \resizebox{\linewidth}{!}{\begin{tabular}{|c|c|c|} 
+  \begin{tabular}{|c|c|c|} 
    \hline
    Nombre del tablespace & Objetivo / Beneficio & Tipo \\ [0.000ex] 
    \hline
@@ -268,25 +326,25 @@ del curso.
    \hline
    multimediaObjTbs&Guardar datos de los archivos clob/blob multimedia&users\\
    \hline
-  \end{tabular}}
+  \end{tabular}
   \caption{Definición de tablespaces modulo administración de multimedia}
   \label{tabla:8}
 \end{table}
 \subsection{Configuración de tablespaces por módulo}
 \begin{table}[H]
   \centering
-  \resizebox{\linewidth}{!}{\begin{tabular}{|c | c |} 
+  \begin{tabular}{|c | c |} 
    \hline
    Nombre del tablespace & Configuración \\ [0.5ex] 
    \hline
-   \multirow{6}{4em}{usersPayTbs} & tamaño inicial de 500M \\
+   \multirow{6}{5.5em}{usersPayTbs} & tamaño inicial de 500M \\
     & Autoextend al llegar al máximo ilimitada \\
     & gestion local automatica de extensiones \\
     & gestion automatica de segmentos \\
     & Cifrado AES256 \\
     & ubicación datafile /disk\_3/app/oracle/oradata/VRAPROY/usersPay01.dbf \\
     \hline
-   \multirow{6}{6em}{undoUsersPayTbs} & tamaño inicial de 50M \\
+   \multirow{6}{7em}{undoUsersPayTbs} & tamaño inicial de 50M \\
     & Autoextend al llegar al máximo ilimitada \\
     & gestion local automatica de extensiones \\
     & gestion automatica de segmentos \\
@@ -299,13 +357,13 @@ del curso.
     & gestion automatica de segmentos \\
     & ubicación datafile /disk\_2/app/oracle/oradata/VRAPROY/usersTbs01.dbf \\
    \hline
-  \end{tabular}}
+  \end{tabular}
   \caption{Configuración tablespaces modulo administración de usuarios}
   \label{tabla:9}
 \end{table}
 \begin{table}[H]
   \centering
-  \resizebox{\linewidth}{!}{\begin{tabular}{|c | c |} 
+  \begin{tabular}{| c | c |} 
    \hline
    Nombre del tablespace & Configuración \\ [0.5ex] 
    \hline
@@ -323,14 +381,14 @@ del curso.
     & gestion automatica de segmentos \\
     & ubicación datafile /disk\_3/app/oracle/oradata/VRAPROY/multimediaTbs01.dbf \\
    \hline
-  \end{tabular}}
+  \end{tabular}
   \caption{Configuración tablespaces modulo administración de multimedia}
   \label{tabla:10}
 \end{table}
 \subsection{Asignación de tablespace para tablas de cada módulo}
 \begin{table}[H]
   \centering
-  \resizebox{\linewidth}{!}{\begin{tabular}{|c|c|} 
+  \begin{tabular}{|c|c|} 
    \hline
    Nombre de la tabla & Nombre del tablespace \\ [0.1ex] 
    \hline
@@ -352,13 +410,13 @@ del curso.
    \hline
    CARGO\_TARJETA & usersPayTbs\\
    \hline
-  \end{tabular}}
+  \end{tabular}
   \caption{Asignación de tablespace para tablas del módulo de usuarios}
   \label{tabla:11}
 \end{table}
 \begin{table}[H]
   \centering
-  \resizebox{\linewidth}{!}{\begin{tabular}{|c|c|} 
+  \begin{tabular}{|c|c|} 
    \hline
    Nombre de la tabla & Nombre del tablespace \\ [0.1ex] 
    \hline
@@ -380,7 +438,7 @@ del curso.
    \hline
    AUDIO & multimediaTbs\\
    \hline
-  \end{tabular}}
+  \end{tabular}
   \caption{Asignación de tablespace para tablas del módulo de multimedia}
   \label{tabla:12}
 \end{table}
@@ -459,6 +517,13 @@ del curso.
   \caption{Asignación de tablespaces para columnas CLOB/BLOB del módulo de multimedia}
   \label{tabla:15}
 \end{table}
+\section{Creación de usuarios}
+\lstinputlisting[language=sql,caption=s-07-crear-usuarios.sql,label={lst:codigousuarios}]{../s-07-crear-usuarios.sql}
+\section{Generación de código DDL}
+Aqui no se añadira el codigo por cuestiones de tamaño
+\section{Modos de conexión}
+\lstinputlisting[language=sql,caption=s-09-crear-conexiones.sql,label={lst:codigoconexion}]{../s-09-crear-conexiones.sql}
+\section{Habilitar la FRA}
 
 \ifCLASSOPTIONcaptionsoff
   \newpage

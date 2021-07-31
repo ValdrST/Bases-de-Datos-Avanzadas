@@ -8,7 +8,7 @@ export ORACLE_SID=vraproy
 echo "Inicio creacion archivo passwords"
 orapwd FILE=${archivoPwd} FORMAT=12.2 \
     FORCE=Y \
-    SYS=password
+    SYS=Hola1234!
 echo "Inicio creacion archivo PFILE"
 touch $ORACLE_HOME/dbs/initvraproy.ora
 echo """

@@ -2,7 +2,7 @@
 --@Fecha creacion : 28/07/2021
 --@Descripcion : Creación del archivo spfile
 
-connect sys/system2 as sysdba
+connect sys/Hola1234! as sysdba
 Prompt Conectando como sys
 whenever sqlerror exit rollback;
 set serveroutput on
