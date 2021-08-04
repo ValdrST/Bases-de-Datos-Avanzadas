@@ -1,0 +1,533 @@
+\documentclass[journal]{IEEEtran}
+\usepackage[english]{babel}
+
+\usepackage{amssymb, amsmath} %Paquetes matemáticos de la American Mathematical 
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage[table, svgnames, dvipsnames]{xcolor}
+\usepackage{multirow}
+\usepackage{supertabular}
+\usepackage{longtable}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+% Definicio de estilo para el codigo fuente que se cita
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+}
+\lstset{style=mystyle}
+
+\renewcommand{\lstlistingname}{Código}
+
+\ifCLASSINFOpdf
+
+\else
+
+\fi
+\begin{document}
+\onecolumn
+\title{Proyecto final \\ Bases de Datos Avanzadas}
+%
+\author{Vicente Romero Andrade}
+
+\markboth{Proyecto final Bases de Datos Avanzadas, Agosto~2021}%
+{Shell \MakeLowercase{\textit{et al.}}: }
+% The only time the second header will appear is for the odd numbered pages
+
+\maketitle
+
+
+
+\section{Objetivo}
+% The very first letter is a 2 line initial drop letter followed
+
+\IEEEPARstart{E}{l} objetivo de este proyecto es poner en práctica lo visto a lo largo 
+del curso.
+
+\section{Creación de la base de datos}
+\subsection{Resumen de scripts creados}
+\begin{table}[H]
+  \centering
+  \begin{longtable}{|c | c | c|} 
+   \hline
+   Num. Script & Nombre del script & Descripción \\ [0.5ex] 
+   \hline
+   1 & s-01-crea-directorios.sh & Crea los directorios que simularan los discos asdasdasdasdasda\\ 
+   \hline
+   2 & s-02-crea-pfile.sh & Crea el pfile y el archivo passwords \\
+   \hline
+   3 & s-03-crear-spfile.sql & Crea el archivo de spfile  \\
+   \hline
+   4 & s-04-crear-base.sql & Crea la base de datos asi como sus configuraciones basicas \\
+   \hline
+   5 & s-05-crear-diccionario-datos.sql & Crea el diccionario de datos de la base \\
+   \hline
+   6 & s-06-crear-tablespaces.sql & Crea los tablespaces de la base de datos \\
+   \hline
+  \end{longtable}
+  \caption{Resumen scripts creados}
+  \label{tabla:1}
+\end{table}
+\subsection{Configuraciones de la base de datos}
+\begin{table}[H]
+  \centering
+  \begin{longtable}{|c | c | c|} 
+   \hline
+   Configuración & Descripción \\ [0.5ex] 
+   \hline
+   \multirow{4}{20em}{Número y ubicación de los archivos de control} & 3 archivo de control\\ 
+   & /u01/app/oracle/oradata/VRAPROY/control01.ctl \\
+   & /disk\_2/app/oracle/oradata/VRAPROY/control02.ctl \\
+   & /disk\_3/app/oracle/oradata/VRAPROY/control03.ctl \\
+   \hline
+   \multirow{13}{20em}{Propuesta de grupos de REDO} & 3 grupos de redo\\
+   & grupo 1\\
+   & /u01/app/oracle/oradata/VRAPROY/redo01a.log\\
+   & /disk\_2/app/oracle/oradata/VRAPROY/redo01b.log\\
+   & /disk\_3/app/oracle/oradata/VRAPROY/redo01c.log\\
+   & grupo 2\\
+   & /u01/app/oracle/oradata/VRAPROY/redo02a.log\\
+   & /disk\_2/app/oracle/oradata/VRAPROY/redo02b.log\\
+   & /disk\_3/app/oracle/oradata/VRAPROY/redo02c.log\\
+   & grupo 3\\
+   & /u01/app/oracle/oradata/VRAPROY/redo03a.log\\
+   & /disk\_2/app/oracle/oradata/VRAPROY/redo03b.log\\
+   & /disk\_3/app/oracle/oradata/VRAPROY/redo03c.log\\
+   \hline
+   \multirow{2}{15em}{Propuesta de juego de caracteres} & AL32UTF8\\
+   & Caracteres nacionales AL16UTF16\\ 
+   \hline
+   Tamaño del bloque de datos & default (La misma del SO)\\ 
+   \hline
+   \multirow{4}{15em}{Archivo passwords}
+   & FILE=\$ORACLE\_HOME/dbs/orapwvraproy \\
+   & FORMAT=12.2 \\
+   & FORCE=Y \\
+   & SYS=Hola1234! \\
+    \hline
+    \multirow{5}{28em}{Lista de parámetros que serán configurados al crear la base de datos} 
+    & maxdatafiles 1024\\
+    & maxloghistory 1\\
+    & maxlogfiles 16\\
+    & maxlogmembers 3\\ 
+    & gestion local de extensiones \\
+   \hline
+  \end{longtable}
+  \caption{Configuraciones de la base de datos}
+  \label{tabla:2}
+\end{table}
+\subsection{Módulos del sistema}
+\begin{table}[H]
+  \centering
+  \begin{longtable}{|c | l | c|} 
+   \hline
+   Nombre del módulo & Descripción & Usuario \\ [0.5ex] 
+   \hline
+   Administración de usuarios & Es el modulo que gestionara los datos de los usuarios asi como los pagos y planes de suscripción & admin\_usuario \\ 
+   \hline
+   Administración de multimedia & Es el modulo que gestionara los datos multimedia asi como el contenido relacionado a sus autores & admin\_multimedia \\  [1ex] 
+   \hline
+  \end{longtable}
+  \caption{Módulos del sistema}
+  \label{tabla:3}
+\end{table}
+\subsection{Diseño lógico de la base de datos}
+\begin{table}[H]
+  \centering
+  \begin{longtable}{|c | c | c|} 
+   \hline
+   Nombre de la tabla & Nombre del módulo \\ [0.5ex] 
+   \hline
+   USUARIO & Administración de usuarios \\ 
+   \hline
+   CUENTA\_USUARIO & Administración de usuarios \\ 
+   \hline
+   TARJETA & Administración de usuarios \\ 
+   \hline
+   CARGO\_TARJETA & Administración de usuarios \\ 
+   \hline
+   PLAN\_SUSCRIPCION & Administración de usuarios \\ 
+   \hline
+   COSTO\_VIGENTE\_HISTORICO & Administración de usuarios \\ 
+   \hline
+   DISPOSITIVO & Administración de usuarios \\ 
+   \hline
+   PLAYLIST & Administración de usuarios \\ 
+   \hline
+   PLAYLIST\_CONTENIDO & Administración de multimedia \\ 
+   \hline
+   CONTENIDO\_MULTIMEDIA & Administración de multimedia \\ 
+   \hline
+   CONTENIDO\_MULTIMEDIA\_AUTOR & Administración de multimedia \\ 
+   \hline
+   AUTOR & Administración de multimedia \\ 
+   \hline
+   GENERO & Administración de multimedia \\ 
+   \hline
+   VIDEO & Administración de multimedia \\ 
+   \hline
+   AUDIO & Administración de multimedia \\ 
+   \hline
+   CONTENIDO\_SECCION & Administración de multimedia \\ 
+   \hline
+   REPRODUCCION & Administración de multimedia \\ 
+   \hline
+   COMENTARIO & Administración de multimedia \\ 
+   [1ex] 
+   \hline
+  \end{longtable}
+  \caption{Diseño lógico de la base de datos}
+  \label{tabla:4}
+\end{table}
+\subsection{Esquema de indexado}
+Se genera el esquema de indices
+\begin{table}[H]
+  \centering
+  \begin{longtable}{| c | c | c | L{2.5cm} |} 
+   \hline
+   Nombre de la tabla & Nombre del índice & Tipo & Propósito \\ [0.0ex] 
+   \hline
+   USUARIO & USUARIO\_USERNAME\_IUK & UNIQUE & Asegura unicidad de username ademas de mejorar consulta usando lower \\
+   \hline
+   CUENTA\_USUARIO & CUENTA\_USUARIO\_CUENTA\_COMPARTIDA\_IUK & UNIQUE & Asegura unicidad de usuario propietario de cuenta y usuario compartido \\
+   \hline
+   DISPOSITIVO & DISPOSITIVO\_USUARIO\_ID\_IX & NON UNIQUE & Mejora desempeño de busqueda de dispositivos de un usuario \\
+   \hline
+   PLAYLIST & PLAYLIST\_NOMBRE\_USUARIO\_IUK & UNIQUE & Asegura que un usuario tenga playlist con nombres unicos \\
+   \hline
+   PLAYLIST\_USUARIO & PLAYLIST\_USUARIO\_USUARIO\_PLAYLIST\_IUK & UNIQUE & Asegura que un playlist fuese compartido una vez con un usuario \\
+   \hline
+   TARJETA & TARJETA\_USUARIO\_NUMERO\_IUK & UNIQUE & Asegura que un usuario solo registre una vez la tarjeta \\
+   \hline
+   CARGO\_TARJETA & CARGO\_TARJETA\_FOLIO\_IUK & UNIQUE & Asegura unicidad de folio de cargo y tarjeta \\
+   \hline
+   PLAN\_SUSCRIPCION & PLAN\_SUSCRIPCION\_DATOS\_IUK & UNIQUE & Asegura unicidad de datos de plan suscripción \\
+   \hline
+   COSTO\_VIGENTE\_HISTORICO & COSTO\_VIGENTE\_HISTORICO\_VIGENCIA\_IUK & UNIQUE & Asegura que solo exista un costo en cierta vigencia para un plan \\
+   \hline
+   PLAYLIST\_CONTENIDO & PLAYLIST\_CONTENIDO\_MULTIMEDIA\_PLAY\_IUK & UNIQUE & Asegura que solo existe una vez el contenido en el playlist \\
+   \hline
+   COMENTARIO & COMENTARIO\_USUARIO\_CONTENIDO\_IX & NON UNIQUE & Mejora desempeño de busqueda de comentarios de usuarios en un contenido \\
+   \hline
+   COMENTARIO & COMENTARIO\_USUARIO\_RESPUESTA\_IX & NON UNIQUE & Mejora desempeño de busqueda de respuestas a comentarios \\
+   \hline
+   CONTENIDO\_MULTIMEDIA & CONTENIDO\_MULTIMEDIA\_CLAVE\_IUK & UNIQUE & Asegura unicidad de la clave \\
+   \hline
+   CONTENIDO\_MULTIMEDIA & CONTENIDO\_MULTIMEDIA\_NOMBRE\_IX & NON UNIQUE & Mejora desempeño de busqueda por nombre \\
+   \hline
+   GENERO & GENERO\_NOMBRE\_IUK & UNIQUE & Mejora desempeño de busqueda por nombre y asegura unicidad \\
+   \hline
+   CONTENIDO\_MULTIMEDIA\_AUTOR & CONTENIDO\_MULTIMEDIA\_AUTOR\_AUTOR\_CONTENIDO\_IUK & UNIQUE & Asegura que el autor este asociado una vez al contenido multimedia \\
+   \hline
+   AUTOR & AUTOR\_NOMBRE\_REAL\_ARTISTICO\_IUK & UNIQUE & Asegura que el autor exista una vez con el nombre artistico \\
+   \hline
+   CONTENIDO\_SECCION & CONTENIDO\_SECCION\_SECUENCIA\_CONTENIDO\_IUK & UNIQUE & Asegura que una secuencia este asociado a solo un contenido \\
+   \hline
+   REPRODUCCION & REPRODUCCION\_DISPOSITIVO\_CONTENIDO\_IX & NON UNIQUE & Mejora busqueda de reproducciones de cada dispositivo \\ [1ex] 
+   \hline
+  \end{longtable}
+  \caption{Esquema de indexado}
+  \label{tabla:5}
+\end{table}
+\section{Diseño físico básico de la BD}
+\subsection{Definición de tablespaces comunes a los módulos}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|c|c|} 
+   \hline
+   Nombre del tablespace & Configuración \\ [0.5ex] 
+   \hline
+    \multirow{4}{4em}{system} 
+    & tamaño inicial de 700M \\
+    & reusar datafile \\
+    & Autoextend de 1M ilimitado \\
+    & ubicación datafile /u01/app/oracle/oradata/VRAPROY/system01.dbf \\ 
+    \hline
+    \multirow{4}{4em}{sysaux} 
+    & tamaño inicial de 500M \\
+    & reusar datafile \\
+    & Autoextend de 1M ilimitado \\
+    & ubicación datafile /u01/app/oracle/oradata/VRAPROY/sysaux01.dbf \\ 
+    \hline
+    \multirow{4}{4em}{users} 
+    & tamaño inicial de 500M \\
+    & Autoextend por default (1M) ilimitado \\
+    & reusar datafile \\
+    & ubicación datafile /disk\_2/app/oracle/oradata/VRAPROY/users.dbf \\ 
+    \hline
+    \multirow{5}{4em}{tempts1}
+    & temporal \\ 
+    & tamaño inicial de 20M \\
+    & Autoextend de 640k ilimitado \\
+    & reusar datafile \\
+    & ubicación datafile /u01/app/oracle/oradata/VRAPROY/temp01.dbf \\
+    \hline
+    \multirow{4}{4em}{undotbs1}
+    & undo \\ 
+    & tamaño inicial de 200M \\
+    & Autoextend de 512k ilimitado \\
+    & reusar datafile \\
+    & ubicación datafile /u01/app/oracle/oradata/VRAPROY/undotbs01.dbf \\
+   \hline
+    \multirow{5}{4em}{indexesTbs} & tamaño inicial de 200M \\
+    & Autoextend de 10M hasta llegar al máximo de 300M \\
+    & gestion local automatica de extensiones \\
+    & gestion automatica de segmentos \\
+    & ubicación datafile /disk\_3/app/oracle/oradata/VRAPROY/indexTbs01.dbf \\
+   \hline
+  \end{tabular}
+  \caption{Configuración de tablespaces comunes a los módulos}
+  \label{tabla:6}
+\end{table}
+\subsection{Definición de tablespaces por módulo}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|c|c|c|} 
+   \hline
+   Nombre del tablespace & Objetivo / Beneficio & Tipo \\ [0.000ex] 
+   \hline
+   usersPayTbs&Guardar de manera segura datos de pagos&users\\
+   \hline
+   undoUsersPayTbs&Guardar datos undo de las transacciones de pagos&undo\\
+   \hline
+   usersTbs&Guardar datos de los usuarios&users\\
+   \hline
+  \end{tabular}
+  \caption{Definición de tablespaces modulo administración de usuarios}
+  \label{tabla:7}
+\end{table}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|c|c|c|} 
+   \hline
+   Nombre del tablespace & Objetivo / Beneficio & Tipo \\ [0.000ex] 
+   \hline
+   multimediaTbs&Guardar datos de los archivos multimedia&users\\
+   \hline
+   multimediaObjTbs&Guardar datos de los archivos clob/blob multimedia&users\\
+   \hline
+  \end{tabular}
+  \caption{Definición de tablespaces modulo administración de multimedia}
+  \label{tabla:8}
+\end{table}
+\subsection{Configuración de tablespaces por módulo}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|c | c |} 
+   \hline
+   Nombre del tablespace & Configuración \\ [0.5ex] 
+   \hline
+   \multirow{6}{5.5em}{usersPayTbs} & tamaño inicial de 500M \\
+    & Autoextend al llegar al máximo ilimitada \\
+    & gestion local automatica de extensiones \\
+    & gestion automatica de segmentos \\
+    & Cifrado AES256 \\
+    & ubicación datafile /disk\_3/app/oracle/oradata/VRAPROY/usersPay01.dbf \\
+    \hline
+   \multirow{6}{7em}{undoUsersPayTbs} & tamaño inicial de 50M \\
+    & Autoextend al llegar al máximo ilimitada \\
+    & gestion local automatica de extensiones \\
+    & gestion automatica de segmentos \\
+    & Cifrado AES256 \\
+    & ubicación datafile /disk\_3/app/oracle/oradata/VRAPROY/usersPay01.dbf \\
+    \hline
+    \multirow{5}{4em}{usersTbs} & tamaño inicial de 500M \\
+    & Autoextend al llegar al máximo ilimitada \\
+    & gestion local automatica de extensiones \\
+    & gestion automatica de segmentos \\
+    & ubicación datafile /disk\_2/app/oracle/oradata/VRAPROY/usersTbs01.dbf \\
+   \hline
+  \end{tabular}
+  \caption{Configuración tablespaces modulo administración de usuarios}
+  \label{tabla:9}
+\end{table}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{| c | c |} 
+   \hline
+   Nombre del tablespace & Configuración \\ [0.5ex] 
+   \hline
+   \multirow{7}{6em}{multimediaObjTbs} & tamaño inicial de 1G \\
+    & Tamaño de bloque de 8k \\
+    & Bigfile \\
+    & Autoextend de 256M hasta llegar al máximo ilimitada \\
+    & gestion local automatica de extensiones \\
+    & gestion automatica de segmentos \\
+    & ubicación datafile /disk\_4/app/oracle/oradata/VRAPROY/multimediaObjTbs.dbf \\
+    \hline
+    \multirow{5}{4em}{multimediaTbs} & tamaño inicial de 500M \\
+    & Autoextend al llegar al máximo ilimitada \\
+    & gestion local automatica de extensiones \\
+    & gestion automatica de segmentos \\
+    & ubicación datafile /disk\_3/app/oracle/oradata/VRAPROY/multimediaTbs01.dbf \\
+   \hline
+  \end{tabular}
+  \caption{Configuración tablespaces modulo administración de multimedia}
+  \label{tabla:10}
+\end{table}
+\subsection{Asignación de tablespace para tablas de cada módulo}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|c|c|} 
+   \hline
+   Nombre de la tabla & Nombre del tablespace \\ [0.1ex] 
+   \hline
+   USUARIO & usersTbs\\
+   \hline
+   PLAN\_SUSCRIPCION & usersTbs\\
+   \hline
+   COSTO\_VIGENTE\_HISTORICO & usersTbs\\
+   \hline
+   CUENTA\_USUARIO & usersTbs\\
+   \hline
+   DISPOSITIVO & usersTbs\\
+   \hline
+   PLAYLIST & usersTbs\\
+   \hline
+   PLAYLIST\_CONTENIDO & usersTbs\\
+   \hline
+   TARJETA & usersPayTbs\\
+   \hline
+   CARGO\_TARJETA & usersPayTbs\\
+   \hline
+  \end{tabular}
+  \caption{Asignación de tablespace para tablas del módulo de usuarios}
+  \label{tabla:11}
+\end{table}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|c|c|} 
+   \hline
+   Nombre de la tabla & Nombre del tablespace \\ [0.1ex] 
+   \hline
+   COMENTARIO & multimediaTbs\\
+   \hline
+   REPRODUCCION & multimediaTbs\\
+   \hline
+   CONTENIDO\_MULTIMEDIA & multimediaTbs\\
+   \hline
+   CONTENIDO\_MULTIMEDIA\_AUTOR & multimediaTbs\\
+   \hline
+   AUTOR & multimediaTbs\\
+   \hline
+   CONTENIDO\_SECCION & multimediaTbs\\
+   \hline
+   GENERO & multimediaTbs\\
+   \hline
+   VIDEO & multimediaTbs\\
+   \hline
+   AUDIO & multimediaTbs\\
+   \hline
+  \end{tabular}
+  \caption{Asignación de tablespace para tablas del módulo de multimedia}
+  \label{tabla:12}
+\end{table}
+\subsection{Asignación de tablespace para índices de cada módulo}
+\begin{table}[H]
+  \centering
+  \resizebox{\linewidth}{!}{\begin{tabular}{|c|c|c|c|c|} 
+   \hline
+   Nombre del índice & Tipo de índice & Nombre de la tabla & Nombre de la columna & Nombre del tablespace \\ [0.1ex] 
+   \hline
+   USUARIO\_USERNAME\_IUK & UNIQUE & USUARIO & USERNAME &  indexesTbs \\
+   \hline
+   CUENTA\_USUARIO\_CUENTA\_COMPARTIDA\_IUK & UNIQUE & CUENTA\_USUARIO & USUARIO\_PROPIETARIO\_ID, USUARIO\_ID &  indexesTbs \\
+   \hline
+   DISPOSITIVO\_USUARIO\_ID\_IX & NON UNIQUE & DISPOSITIVO & USUARIO\_ID &  indexesTbs \\
+   \hline
+   PLAYLIST\_NOMBRE\_USUARIO\_IUK & UNIQUE & PLAYLIST & USUARIO\_CREADOR\_ID &  indexesTbs \\
+   \hline
+   PLAYLIST\_USUARIO\_USUARIO\_PLAYLIST\_IUK & UNIQUE & PLAYLIST\_USUARIO & USUARIO\_ID, PLAYLIST\_ID &  indexesTbs \\
+   \hline
+   TARJETA\_USUARIO\_NUMERO\_IUK & UNIQUE & TARJETA & USUARIO\_ID, NUMERO &  indexesTbs \\
+   \hline
+   CARGO\_TARJETA\_FOLIO\_IUK & UNIQUE & CARGO\_TARJETA & TARJETA\_ID, FOLIO &  indexesTbs \\
+   \hline
+   PLAN\_SUSCRIPCION\_DATOS\_IUK & UNIQUE & PLAN\_SUSCRIPCION & CLAVE, NOMBRE &  indexesTbs \\
+   \hline
+   COSTO\_VIGENTE\_HISTORICO\_VIGENCIA\_IUK & UNIQUE & COSTO\_VIGENTE\_HISTORICO & PLAN\_SUSCRIPCION\_ID, FECHA\_INICIO, FECHA\_FIN &  indexesTbs \\
+   \hline
+   PLAYLIST\_CONTENIDO\_MULTIMEDIA\_PLAY\_IUK & UNIQUE & PLAYLIST\_CONTENIDO & PLAYLIST\_ID, CONTENIDO\_MULTIMEDIA\_ID &  indexesTbs \\
+   
+   \hline
+  \end{tabular}}
+  \caption{Asignación de tablespace para tablas del módulo de administración de usuarios}
+  \label{tabla:13}
+\end{table}
+\begin{table}[H]
+  \centering
+  \resizebox{\linewidth}{!}{\begin{tabular}{|c|c|c|c|c|} 
+   \hline
+   Nombre del índice & Tipo de índice & Nombre de la tabla & Nombre de la columna & Nombre del tablespace \\ [0.1ex] 
+   \hline
+   COMENTARIO\_USUARIO\_CONTENIDO\_IX & NON UNIQUE & COMENTARIO & CONTENIDO\_MULTIMEDIA\_ID, USUARIO\_ID &  indexesTbs \\
+   \hline
+   COMENTARIO\_USUARIO\_RESPUESTA\_IX & NON UNIQUE & COMENTARIO & COMENTARIO\_RESPUESTA\_ID, USUARIO\_ID, COMENTARIO\_ID &  indexesTbs \\
+   \hline
+   CONTENIDO\_MULTIMEDIA\_CLAVE\_IUK & UNIQUE & CONTENIDO\_MULTIMEDIA & CLAVE &  indexesTbs \\
+   \hline
+   CONTENIDO\_MULTIMEDIA\_NOMBRE\_IUK & UNIQUE & CONTENIDO\_MULTIMEDIA & NOMBRE &  indexesTbs \\
+   \hline
+   GENERO\_NOMBRE\_IUK & UNIQUE & GENERO & NOMBRE &  indexesTbs \\
+   \hline
+   CONTENIDO\_MULTIMEDIA\_AUTOR\_AUTOR\_CONTENIDO\_IUK & UNIQUE & CONTENIDO\_MULTIMEDIA\_AUTOR & CONTENIDO\_MULTIMEDIA\_ID, AUTOR\_ID &  indexesTbs \\
+   \hline
+   AUTOR\_NOMBRE\_REAL\_ARTISTICO\_IUK & UNIQUE & AUTOR & NOMBRE, APELLIDOS, NOMBRE\_ARTISTICO &  indexesTbs \\
+   \hline
+   CONTENIDO\_SECCION\_SECUENCIA\_CONTENIDO\_IUK & UNIQUE & CONTENIDO\_SECCION & ID\_SECUENCIA, CONTENIDO\_MULTIMEDIA\_ID &  indexesTbs \\
+   \hline
+   REPRODUCCION\_DISPOSITIVO\_CONTENIDO\_IX & UNIQUE & REPRODUCCION & CONTENIDO\_MULTIMEDIA\_ID, DISPOSITIVO\_ID &  indexesTbs \\
+   \hline
+  \end{tabular}}
+  \caption{Asignación de tablespace para tablas del módulo de multimedia}
+  \label{tabla:14}
+\end{table}
+\subsection{Asignación de tablespaces para columnas CLOB/BLOB de cada módulo}
+\begin{table}[H]
+  \centering
+  \resizebox{\linewidth}{!}{\begin{tabular}{|c|c|c|c|c|} 
+   \hline
+   Nombre de la columna CLOB/BLOB & Nombre de índice asociado a la columna CLOB/BLOB & Nombre de la tabla & Nombre del tablespace para la columna CLOB/BLOB & Nombre del tablespace para el índice de la columna CLOB/BLOB \\ [0.1ex] 
+   \hline
+   LETRA & N/A & AUDIO & multimediaObjTbs & N/A \\
+   \hline
+   CONTENIDO & N/A & CONTENIDO\_SECCION & multimediaObjTbs & N/A \\
+   \hline
+  \end{tabular}}
+  \caption{Asignación de tablespaces para columnas CLOB/BLOB del módulo de multimedia}
+  \label{tabla:15}
+\end{table}
+\section{Creación de usuarios}
+\lstinputlisting[language=sql,caption=s-07-crear-usuarios.sql,label={lst:codigousuarios}]{../s-07-crear-usuarios.sql}
+\section{Generación de código DDL}
+Aqui no se añadira el codigo por cuestiones de tamaño
+\section{Modos de conexión}
+\lstinputlisting[language=sql,caption=s-09-crear-conexiones.sql,label={lst:codigoconexion}]{../s-09-crear-conexiones.sql}
+\section{Habilitar la FRA}
+
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+
+\fi
+
+\end{document}
