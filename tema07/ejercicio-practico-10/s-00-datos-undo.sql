@@ -51,9 +51,9 @@ SELECT T.TABLESPACE_NAME,
 WHERE T.TABLESPACE_NAME='UNDOTBS2'
 GROUP BY T.TABLESPACE_NAME,DF.BYTES,DF.BLOCKS;
 -- I
-CONNECT VRA_TBS_MULTIPLE/VRA_TBS_MULTIPLE
 DECLARE
   v_count number;
+  v_count_s number;
   v_username varchar2(30) := 'VRA_TBS_MULTIPLE';
   v_table varchar2(30) := 'VRA_CADENA_2';
   v_secuencia varchar2(30) :='SEC_VRA_CADENA_2';
@@ -63,15 +63,76 @@ BEGIN
   from all_tables
   where table_name = v_table
   and owner = v_username;
+
+  --Verificar si la secuencia existe
+  select count(*) into v_count_s
+    from all_sequences
+  where sequence_name = v_secuencia
+    and sequence_owner = v_username;
   --Si existe la tabla, entonces se borra
   if v_count > 0 then
-    execute immediate 'drop table '||v_table;
-    execute immediate 'drop sequence '||v_secuencia;
+    execute immediate 'drop table '||v_username||'.'||v_table;
   end if;
-  execute immediate 'create table '||v_table||' (
+  if v_count_s > 0 then
+    execute immediate 'drop sequence '||v_username||'.'||v_secuencia;
+  end if;
+  execute immediate 'create table '||v_username||'.'||v_table||' (
     id number constraint vra_cadena_2_pk primary key,
     cadena varchar2(1024)
   ) nologging';
-  execute immediate 'create sequence sec_vra_cadena_2';
+  execute immediate 'create sequence '||v_username||'.'||v_secuencia;
 end;
 /
+-- Inserts
+declare
+  v_rows number;
+  v_stmt varchar2(200);
+  v_username varchar2(30) := 'VRA_TBS_MULTIPLE';
+  v_table varchar2(30) := 'VRA_CADENA_2';
+  v_secuencia varchar2(30) :='SEC_VRA_CADENA_2';
+begin
+v_rows := 50000;
+v_stmt := 'insert into '||v_username||'.'||v_table||'(
+  id, cadena
+  ) values (:1, :2)';
+for v_index in 1 .. v_rows loop
+  execute immediate v_stmt using SEC_VRA_CADENA_2.nextval, dbms_random.string('P',1024);
+end loop;
+end;
+/
+commit;
+-- I
+declare
+  v_stmt varchar2(200);
+  v_username varchar2(30) := 'VRA_TBS_MULTIPLE';
+  v_table varchar2(30) := 'VRA_CADENA_2';
+begin
+  v_stmt := 'delete from '||v_username||'.'||v_table||'
+    where id in (SELECT id from '||v_username||'.'||v_table||' WHERE ROWNUM<=5000)';
+  execute immediate v_stmt;
+end;
+/
+commit;
+
+-- 1 - 5000 | 835 | 138 | 160 | 9835
+-- 5001 - 10000 | 1669 | 144 | 160 | 1896
+-- 10001 - 15000 | 835 | 12 | 160 | 1741
+-- 15001 - 20000 | Error
+--L
+-- 11 para la primera
+--M
+connect VRA_TBS_MULTIPLE/VRA_TBS_MULTIPLE
+set transaction isolation level serializable name 'T1-RC';
+declare
+  v_rows number;
+  v_stmt varchar2(200);
+  v_username varchar2(30) := 'VRA_TBS_MULTIPLE';
+  v_table varchar2(30) := 'VRA_CADENA_2';
+begin
+  v_rows := 10;
+  v_stmt := 'delete from '||v_username||'.'||v_table||'
+    where id in (SELECT id from '||v_username||'.'||v_table||' WHERE ROWNUM<=5000)';
+  execute immediate v_stmt;  
+end;
+/
+commit;
