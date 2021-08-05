@@ -7,7 +7,10 @@
 \usepackage{float}
 \usepackage{hyperref}
 \usepackage{listings}
-\usepackage{xcolor}
+\usepackage[table, svgnames, dvipsnames]{xcolor}
+\usepackage{multirow}
+\usepackage{supertabular}
+\usepackage{longtable}
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
@@ -171,11 +174,126 @@ GROUP BY T.TABLESPACE_NAME,DF.BYTES,DF.BLOCKS;
 \end{figure}
 
 \subsection{Empleando el usuario creado en temas anteriores, generar una tabla con la siguiente estructura}
+\begin{lstlisting}[language=sql, caption=sentencia crear tabla,label={lst:codigo6}]
+  DECLARE
+  v_count number;
+  v_count_s number;
+  v_username varchar2(30) := 'VRA_TBS_MULTIPLE';
+  v_table varchar2(30) := 'VRA_CADENA_2';
+  v_secuencia varchar2(30) :='SEC_VRA_CADENA_2';
+BEGIN
+  --Verificar si la table existe
+  select count(*) into v_count
+  from all_tables
+  where table_name = v_table
+  and owner = v_username;
 
+  --Verificar si la secuencia existe
+  select count(*) into v_count_s
+    from all_sequences
+  where sequence_name = v_secuencia
+    and sequence_owner = v_username;
+  --Si existe la tabla, entonces se borra
+  if v_count > 0 then
+    execute immediate 'drop table '||v_username||'.'||v_table;
+  end if;
+  if v_count_s > 0 then
+    execute immediate 'drop sequence '||v_username||'.'||v_secuencia;
+  end if;
+  execute immediate 'create table '||v_username||'.'||v_table||' (
+    id number constraint vra_cadena_2_pk primary key,
+    cadena varchar2(1024)
+  ) nologging';
+  execute immediate 'create sequence '||v_username||'.'||v_secuencia;
+end;
+/
+-- Inserts
+declare
+  v_rows number;
+  v_stmt varchar2(200);
+  v_username varchar2(30) := 'VRA_TBS_MULTIPLE';
+  v_table varchar2(30) := 'VRA_CADENA_2';
+  v_secuencia varchar2(30) :='SEC_VRA_CADENA_2';
+begin
+v_rows := 50000;
+v_stmt := 'insert into '||v_username||'.'||v_table||'(
+  id, cadena
+  ) values (:1, :2)';
+for v_index in 1 .. v_rows loop
+  execute immediate v_stmt using VRA_TBS_MULTIPLE.SEC_VRA_CADENA_2.nextval, dbms_random.string('P',1024);
+end loop;
+end;
+/
+commit;
+\end{lstlisting}
+\subsection{Replicación del error al ejecutar sentencias DML}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=.14]{captura_6.png}
+   \caption{Salida consulta punto E}
+   \label{fig:validador_6}
+\end{figure}
+\begin{table}[H]
+  \centering
+  \resizebox{\linewidth}{!}{\begin{tabular}{|c|c|c|c|c|} 
+   \hline
+   Registros eliminados & \# bloques utilizados & \# transacciones ejecutadas & \#bloques activos & Retención en segundos calculado \\ [0.1ex] 
+   \hline
+   1 - 5000 & 835 & 138 & 160 & 9835 \\
+   \hline
+   5001 - 10000 & 1669 & 144 & 160 & 1896 \\
+   \hline
+   10001 - 15000 & 835 & 12 & 160 & 1741 \\
+   \hline
+  \end{tabular}}
+  \caption{Tabla registros eliminados}
+  \label{tabla:1}
+\end{table}
+\subsubsection{Revisar los datos de la tabla y generar una conclusión al respecto}
+En este caso el unico cambio significativo es el tiempo de retención el cual fue bajando
+\subsection{¿Qué acciones se pueden realizar para corregir el error adicional a aumentar el tamaño del tablespace undo?}
+A parte de aumentar el tamaño de datafile que contiene el tablespace undo otra acción seria
+configurar la cláusula $retention\ noguarantee$ sacrificando datos los datos unexpired.
+\subsection{Replicación del error snapshoot too old}
+\subsubsection{¿Cuántas instrucciones delete se tuvieron que ejecutar para provocar el error snapshppt too old?}
+4 instrucciones
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=.23]{captura_7.png}
+   \caption{Salida error snapshoot to old}
+   \label{fig:validador_7}
+\end{figure}
+\subsection{Provocar ahora el comportamiento inverso: Hacer que la base de datos le de preferencia a consultas que requieran hacer uso de datos undo en lugar de dar preferencia a las sentencias SQL}
+\subsubsection{Incluir la sentencia SQL que permite modificar este comportamiento, ejecutarla}
+\begin{lstlisting}[language=sql, caption=Configuración priorizar datos undo,label={lst:codigo7}]
+-- Se configura el retention guarantee
+alter tablespace undotbs2 retention guarantee;
+\end{lstlisting}
+\begin{lstlisting}[language=sql, caption=script que se ejecuta constantemente para eliminar los datos y llenar undo,label={lst:codigo8}]
+declare
+  v_rows number;
+  v_stmt varchar2(200);
+  v_username varchar2(30) := 'VRA_TBS_MULTIPLE';
+  v_table varchar2(30) := 'VRA_CADENA_2';
+begin
+  v_rows := 10;
+  v_stmt := 'delete from '||v_username||'.'||v_table||'
+    where id in (SELECT id from '||v_username||'.'||v_table||' WHERE ROWNUM<=5000)';
+  execute immediate v_stmt;  
+end;
+/
+commit;
+\end{lstlisting}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=.23]{captura_8.png}
+   \caption{Salida error comportamiento inverso}
+   \label{fig:validador_8}
+\end{figure}
 \section{Conclusiones}
-Se encontro una forma eficiente de consultar los segmentos creados en una tabla, 
-el unico incoveniente es que estos dependen de que sean creados con el nombre de la tabla 
-para su busqueda.
+En este ejercicio se logro comprender mejor la administración de datos undo asi como lo que implican,
+se puede elegir entre configurar para que estos tengan prioridad o para que las sentencias DML siempre puedan 
+ser ejecutas sin problema.
 \ifCLASSOPTIONcaptionsoff
   \newpage
 
