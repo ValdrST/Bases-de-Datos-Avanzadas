@@ -79,5 +79,5 @@ alter database drop logfile group 3;
 --L
 ! find /u0* -name redo*0[1-3][a-c].log -exec rm {} \;
 --M
- 
+!find /u0* -name redo*.log
 whenever sqlerror continue
