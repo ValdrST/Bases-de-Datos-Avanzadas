@@ -8,7 +8,7 @@
 -- Date Created : Friday, July 30, 2021 16:54:56
 -- Target DBMS : Oracle 12c
 --
-
+connect sys/system2 as sysdba
 -- 
 -- TABLE: admin_multimedia.GENERO 
 --
@@ -45,7 +45,7 @@ CREATE TABLE admin_multimedia.CONTENIDO_MULTIMEDIA(
 TABLESPACE multimediaTbs
 ;
 
-
+grant REFERENCES on admin_multimedia.CONTENIDO_MULTIMEDIA to usuario;
 
 -- 
 -- TABLE: admin_multimedia.AUDIO 
@@ -93,7 +93,7 @@ CREATE TABLE admin_usuario.PLAN_SUSCRIPCION(
     NOMBRE                 VARCHAR2(60)     NOT NULL,
     DESCRIPCION            VARCHAR2(200)    NOT NULL,
     COSTO                  NUMBER(10, 2)    NOT NULL,
-    CONSTRAINT PLAN_SUSCRIPCION_PRECIO_CHK CHECK (PRECIO >= 0.00),
+    CONSTRAINT PLAN_SUSCRIPCION_PRECIO_CHK CHECK (COSTO >= 0.00),
     CONSTRAINT PK5 PRIMARY KEY (PLAN_SUSCRIPCION_ID)
 )
 TABLESPACE usersTbs
@@ -121,7 +121,7 @@ CREATE TABLE admin_usuario.USUARIO(
 TABLESPACE usersTbs
 ;
 
-
+grant REFERENCES on admin_usuario.USUARIO to admin_multimedia;
 
 -- 
 -- TABLE: admin_multimedia.COMENTARIO 
@@ -143,7 +143,6 @@ CREATE TABLE admin_multimedia.COMENTARIO(
 )
 TABLESPACE multimediaTbs
 ;
-
 
 
 -- 
@@ -241,7 +240,7 @@ CREATE TABLE admin_usuario.DISPOSITIVO(
 TABLESPACE usersTbs
 ;
 
-
+grant select on admin_usuario.DISPOSITIVO to admin_multimedia;
 
 -- 
 -- TABLE: admin_multimedia.REPRODUCCION 

@@ -44,3 +44,15 @@ chmod -R 754 /disk_4
 chmod -R 754 /disk_5
 chmod -R 754 /disk_6
 chmod -R 754 /disk_7
+
+echo "crear directorio para el wallet"
+
+mkdir -p $ORACLE_HOME/wallets
+chmod -R 700 $ORACLE_HOME/wallets
+# Contraseña del wallet sera Hola1234!
+mkstore -wrl $ORACLE_HOME/wallets/oracle -create
+mkstore -wrl $ORACLE_HOME/wallets/oracle -createCredential pc-vra.fi.unam:1521 sys system2
+
+
+
+

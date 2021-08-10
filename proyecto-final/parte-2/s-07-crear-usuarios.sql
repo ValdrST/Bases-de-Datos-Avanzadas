@@ -4,23 +4,25 @@
 
 whenever sqlerror exit rollback
 set serveroutput on 
-connect sys as sysdba
+connect sys/system2 as sysdba
 
-create user admin_multimedia identified by Hola1234! 
-quota unlimited on users
-quota unlimited on indexesTbs 
+drop user admin_multimedia;
+create user admin_multimedia identified by "Hola1234#"
 quota unlimited on multimediaTbs
-quota unlimited on multimediaObjTbs
 default tablespace multimediaTbs;
 
+alter user admin_multimedia
+quota unlimited on indexesTbs
+quota unlimited on multimediaObjTbs;
 
-create user admin_usuario identified by Hola1234# 
-quota unlimited on users
-quota unlimited on usersPayTbs
-quota unlimited on undoUsersPayTbs
-quota unlimited on indexesTbs 
+drop user admin_usuario;
+create user admin_usuario identified by "Hola1234#"
 quota unlimited on usersTbs
 default tablespace usersTbs;
+
+alter user admin_usuario
+quota unlimited on usersPayTbs
+quota unlimited on indexesTbs;
 
 grant
  create session, 
@@ -35,5 +37,7 @@ grant
  create table, 
  create procedure 
 to admin_multimedia;
+
+grant select on usersTbs to admin_multimedia;
 
 whenever sqlerror continue

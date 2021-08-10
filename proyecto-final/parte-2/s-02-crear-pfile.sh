@@ -4,13 +4,13 @@
 #Descripcion: Crea PFILE y el archivo de password
 
 archivoPwd="${ORACLE_HOME}"/dbs/orapwvraproy
+echo "${ORACLE_HOME}"/dbs/orapwvraproy
 export ORACLE_SID=vraproy
 echo "Inicio creacion archivo passwords"
 orapwd FILE=${archivoPwd} FORMAT=12.2 \
     FORCE=Y \
     SYS=Hola1234! \
-    SYSBACKUP=Hola1234! \
-orapwd FILE=passwords FORMAT=12.2 FORCE=Y SYS=Hola1234! SYSBACKUP=system2
+    SYSBACKUP=Hola1234!
 echo "Inicio creacion archivo PFILE"
 touch $ORACLE_HOME/dbs/initvraproy.ora
 echo """

@@ -3,7 +3,7 @@
 --@Descripcion: Poner base en modo archivelog
 whenever sqlerror exit rollback
 set serveroutput on 
-connect sys as sysdba
+connect sys/system2 as sysdba
 shutdown
 --respaldar el spfile
 create pfile from spfile;

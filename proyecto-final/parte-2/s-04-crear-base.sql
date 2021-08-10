@@ -11,8 +11,7 @@ whenever sqlerror exit rollback;
 Prompt Iniciando la creación de la base de datos
 create database vraproy
    user sys identified by system2
-   user system identified by system2 
-   user sysbackup identified by system2
+   user system identified by system2
    logfile group 1(
       '/u01/app/oracle/oradata/VRAPROY/redo01a.log',
       '/disk_2/app/oracle/oradata/VRAPROY/redo01b.log',
@@ -50,3 +49,4 @@ alter user sys identified by system2;
 alter user system identified by system2;
 alter user sysbackup identified by system2;
 
+whenever sqlerror continue none
