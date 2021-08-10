@@ -8,19 +8,6 @@ connect sys/system2 as sysdba
 --crear un pfile a partir de un spfile
 create pfile from spfile;
 
-
-/*
-alter system set db_create_file_dest='/disk_7/work_recovery_area' scope=both;
- creo que esto va en RMAN
---archivelog
-alter system set log_archive_dest_2='LOCATION=USE_DB_RECOVERY_FILE_DEST' scope=both;
---Online redo log
-alter system set db_create_online_log_dest_1='/disk_6/flash_recovery_area' scope=both;
---control files
-alter system set control_files='/disk_1/app/oracle/oradata/vraproy/control01.ctl',
-    '/disk_2/app/oracle/oradata/vraproy/control02.ctl',
-    '/disk_6/flash_recovery_area/control03.ctl' scope=both;
-*/
 alter system set db_recovery_file_dest_size=2G scope=both;
 --calculando el tamaño seria: 
 --1800M (tablespacecomunes) + 
@@ -36,7 +23,7 @@ alter system set log_archive_dest_2='LOCATION=USE_DB_RECOVERY_FILE_DEST' scope=b
 --controlfile
 alter database backup controlfile to 'LOCATION=USE_DB_RECOVERY_FILE_DEST';
 --Online redo log
-alter system set db_create_online_log_dest_3='/disk_6/app/oracle/oradata/VRAPROY/flash_recovery_area/VRAPROY' scope=both;
+alter system set db_create_online_log_dest_3='LOCATION=USE_DB_RECOVERY_FILE_DEST' scope=both;
 alter database flashback on;
 
 --vista
