@@ -361,8 +361,8 @@ for v_index in 1 .. v_rows loop
   dbms_random.string('P',40),
   trunc(DBMS_RANDOM.VALUE(1,2000),2),
   trunc(DBMS_RANDOM.VALUE(1,2000),2),
-  trunc(DBMS_RANDOM.VALUE(1,1000),7),
-  trunc(DBMS_RANDOM.VALUE(1,1000),7),
+  trunc(DBMS_RANDOM.VALUE(1,1000),5),
+  trunc(DBMS_RANDOM.VALUE(1,1000),5),
   trunc(DBMS_RANDOM.VALUE(1,2000)),
   trunc(DBMS_RANDOM.VALUE(1,2000));
 end loop;
@@ -402,6 +402,66 @@ end loop;
 end;
 /
 prompt fin carga comentarios
+prompt carga Autor
+-- carga autor
+declare
+  v_rows number;
+  v_stmt varchar2(200);
+  v_username varchar2(30) := 'ADMIN_MULTIMEDIA';
+  v_table varchar2(30) := 'AUTOR';
+begin
+v_rows := 2000;
+v_stmt := 'insert into '||v_username||'.'||v_table||'(
+  autor_id,
+  nombre,
+  apellidos,
+  email,
+  nombre_artistico
+  ) values (
+    :1, 
+    :2,
+    :3,
+    :4,
+    :5
+  )';
+for v_index in 1 .. v_rows loop
+  execute immediate v_stmt using v_index,
+  dbms_random.string('P',100),
+  dbms_random.string('P',100),
+  dbms_random.string('P',100),
+  dbms_random.string('P',100);
+end loop;
+end;
+/
+
+-- carga contenido multimedia autor
+declare
+  v_rows number;
+  v_stmt varchar2(300);
+  v_username varchar2(30) := 'ADMIN_MULTIMEDIA';
+  v_table varchar2(30) := 'CONTENIDO_MULTIMEDIA_AUTOR';
+begin
+v_rows := 2000;
+v_stmt := 'insert into '||v_username||'.'||v_table||'(
+  contenido_multimedia_autor_id,
+  porcentaje_participacion,
+  autor_id,
+  contenido_multimedia_id
+  ) values (
+    :1, 
+    :2,
+    :3,
+    :4
+  )';
+for v_index in 1 .. v_rows loop
+  execute immediate v_stmt using v_index,
+  trunc(DBMS_RANDOM.VALUE(1,99)),
+  trunc(DBMS_RANDOM.VALUE(1,1000)),
+  trunc(DBMS_RANDOM.VALUE(1,1000));
+end loop;
+end;
+/
+SELECT * FROM admin_multimedia.CONTENIDO_MULTIMEDIA_AUTOR
 rollback;
 
 whenever sqlerror continue
