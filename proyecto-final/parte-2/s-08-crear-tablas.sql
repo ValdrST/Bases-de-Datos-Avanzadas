@@ -33,7 +33,7 @@ CREATE TABLE admin_multimedia.CONTENIDO_MULTIMEDIA(
     NOMBRE                     VARCHAR2(100)    NOT NULL,
     TIPO                       CHAR(1)          NOT NULL,
     TOTAL_REPRODUCCIONES       NUMBER(10, 0)    NOT NULL,
-    DURACION                   DATE             NOT NULL,
+    DURACION                   TIMESTAMP        NOT NULL,
     REPRODUCCIONES             NUMBER(10, 0)    NOT NULL,
     CALIFICACION               NUMBER(1, 0)     NOT NULL,
     GENERO_ID                  NUMBER(10, 0)    NOT NULL,
@@ -94,7 +94,7 @@ CREATE TABLE admin_usuario.PLAN_SUSCRIPCION(
     DESCRIPCION            VARCHAR2(200)    NOT NULL,
     COSTO                  NUMBER(10, 2)    NOT NULL,
     CONSTRAINT PLAN_SUSCRIPCION_PRECIO_CHK CHECK (COSTO >= 0.00),
-    CONSTRAINT PK5 PRIMARY KEY (PLAN_SUSCRIPCION_ID)
+    CONSTRAINT PLAN_SUSCRIPCION_PK PRIMARY KEY (PLAN_SUSCRIPCION_ID)
 )
 TABLESPACE usersTbs
 ;
@@ -294,7 +294,7 @@ TABLESPACE multimediaTbs
 --
 
 CREATE TABLE admin_usuario.TARJETA(
-    PLAYLIST_ID         NUMBER(10, 0)    NOT NULL,
+    TARJETA_ID         NUMBER(10, 0)    NOT NULL,
     NUMERO              CHAR(16)         NOT NULL,
     TIPO                VARCHAR2(40)     NOT NULL,
     NUMERO_SEGURIDAD    CHAR(3)          NOT NULL,
