@@ -319,6 +319,7 @@ end;
 /
 prompt carga de datos blob completa
 
+prompt inicio carga reproduccion
 -- carga reproduccion
 declare
   v_rows number;
@@ -360,14 +361,16 @@ for v_index in 1 .. v_rows loop
   dbms_random.string('P',40),
   trunc(DBMS_RANDOM.VALUE(1,2000),2),
   trunc(DBMS_RANDOM.VALUE(1,2000),2),
-  trunc(DBMS_RANDOM.VALUE(1,2000),7),
-  trunc(DBMS_RANDOM.VALUE(1,2000),7),
+  trunc(DBMS_RANDOM.VALUE(1,1000),7),
+  trunc(DBMS_RANDOM.VALUE(1,1000),7),
   trunc(DBMS_RANDOM.VALUE(1,2000)),
   trunc(DBMS_RANDOM.VALUE(1,2000));
 end loop;
 end;
 /
+prompt fin carga reproduccion
 
+prompt inicio carga comentarios
 -- carga Comentario
 declare
   v_rows number;
@@ -398,6 +401,7 @@ for v_index in 1 .. v_rows loop
 end loop;
 end;
 /
+prompt fin carga comentarios
 rollback;
 
 whenever sqlerror continue
