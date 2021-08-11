@@ -248,7 +248,7 @@ v_stmt_audio := 'insert into '||v_username||'.'||v_table_audio||'(
   ) values (:1, :2, :3, :4)';
 for v_index in 1 .. v_rows loop
   SELECT
-    (CASE trunc(dbms_random.value(1,2))
+    (CASE trunc(dbms_random.value(1,3))
       WHEN 1 THEN 'V'
       WHEN 2 THEN 'A'
     END) as tipo
@@ -455,13 +455,37 @@ v_stmt := 'insert into '||v_username||'.'||v_table||'(
   )';
 for v_index in 1 .. v_rows loop
   execute immediate v_stmt using v_index,
-  trunc(DBMS_RANDOM.VALUE(1,99)),
-  trunc(DBMS_RANDOM.VALUE(1,1000)),
-  trunc(DBMS_RANDOM.VALUE(1,1000));
+  trunc(DBMS_RANDOM.VALUE(1,99),2),
+  trunc(DBMS_RANDOM.VALUE(1,2000)),
+  trunc(DBMS_RANDOM.VALUE(1,2000));
 end loop;
 end;
 /
-SELECT * FROM admin_multimedia.CONTENIDO_MULTIMEDIA_AUTOR
-rollback;
+
+-- carga playlist contenido
+declare
+  v_rows number;
+  v_stmt varchar2(300);
+  v_username varchar2(30) := 'ADMIN_MULTIMEDIA';
+  v_table varchar2(30) := 'PLAYLIST_CONTENIDO';
+begin
+v_rows := 2000;
+v_stmt := 'insert into '||v_username||'.'||v_table||'(
+  playlist_contenido_id,
+  playlist_id,
+  contenido_multimedia_id
+  ) values (
+    :1, 
+    :2,
+    :3
+  )';
+for v_index in 1 .. v_rows loop
+  execute immediate v_stmt using v_index,
+  trunc(DBMS_RANDOM.VALUE(1,2000)),
+  trunc(DBMS_RANDOM.VALUE(1,2000));
+end loop;
+end;
+/
+commit;
 
 whenever sqlerror continue
