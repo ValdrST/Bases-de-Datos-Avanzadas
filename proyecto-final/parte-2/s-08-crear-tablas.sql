@@ -33,7 +33,7 @@ CREATE TABLE admin_multimedia.CONTENIDO_MULTIMEDIA(
     NOMBRE                     VARCHAR2(100)    NOT NULL,
     TIPO                       CHAR(1)          NOT NULL,
     TOTAL_REPRODUCCIONES       NUMBER(10, 0)    NOT NULL,
-    DURACION                   TIMESTAMP        NOT NULL,
+    DURACION                   interval day(2) to second(2)  NOT NULL,
     REPRODUCCIONES             NUMBER(10, 0)    NOT NULL,
     CALIFICACION               NUMBER(1, 0)     NOT NULL,
     GENERO_ID                  NUMBER(10, 0)    NOT NULL,
@@ -240,7 +240,7 @@ CREATE TABLE admin_usuario.DISPOSITIVO(
 TABLESPACE usersTbs
 ;
 
-grant select on admin_usuario.DISPOSITIVO to admin_multimedia;
+grant references on admin_usuario.DISPOSITIVO to admin_multimedia;
 
 -- 
 -- TABLE: admin_multimedia.REPRODUCCION 
@@ -248,8 +248,8 @@ grant select on admin_usuario.DISPOSITIVO to admin_multimedia;
 
 CREATE TABLE admin_multimedia.REPRODUCCION(
     REPRODUCCION_ID            NUMBER(10, 0)    NOT NULL,
-    HORA_INICIO                TIMESTAMP(6)     NOT NULL,
-    HORA_FIN                   TIMESTAMP(6)     NOT NULL,
+    HORA_INICIO                interval day(2) to second(2)     NOT NULL,
+    HORA_FIN                   interval day(2) to second(2)     NOT NULL,
     FECHA_REPRODUCCION         TIMESTAMP(6)     NOT NULL,
     DISPOSITIVO                VARCHAR2(40)     NOT NULL,
     VELOCIDAD_DESCARGA         NUMBER(10, 2)    NOT NULL,
