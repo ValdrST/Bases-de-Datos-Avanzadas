@@ -45,7 +45,7 @@ CREATE TABLE admin_multimedia.CONTENIDO_MULTIMEDIA(
 TABLESPACE multimediaTbs
 ;
 
-grant REFERENCES on admin_multimedia.CONTENIDO_MULTIMEDIA to usuario;
+grant REFERENCES on admin_multimedia.CONTENIDO_MULTIMEDIA to admin_usuario;
 
 -- 
 -- TABLE: admin_multimedia.AUDIO 

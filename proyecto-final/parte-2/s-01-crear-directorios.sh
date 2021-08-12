@@ -18,7 +18,9 @@ mkdir -p /disk_3/app/oracle/oradata/VRAPROY
 mkdir -p /disk_4/app/oracle/oradata/VRAPROY
 mkdir -p /disk_5/app/oracle/oradata/VRAPROY
 mkdir -p /disk_6/app/oracle/oradata/VRAPROY
+mkdir -p /disk_6/app/oracle/oradata/VRAPROY/flash_recovery_area
 mkdir -p /disk_7/app/oracle/oradata/VRAPROY
+
 
 echo "Cambiando de dueño y grupo a disks"
 chown root:oinstall /disk_2

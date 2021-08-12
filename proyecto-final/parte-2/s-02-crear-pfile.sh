@@ -18,6 +18,6 @@ echo """
   db_domain=fi.unam
   control_files=(/u01/app/oracle/oradata/VRAPROY/control01.ctl,
     /disk_2/app/oracle/oradata/VRAPROY/control02.ctl,
-    /disk_3/app/oracle/oradata/VRAPROY/control03.ctl)
+    /disk_6/app/oracle/oradata/VRAPROY/flash_recovery_area/control03.ctl)
   memory_target=768M
 """ >> $ORACLE_HOME/dbs/initvraproy.ora

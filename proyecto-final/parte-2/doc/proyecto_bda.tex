@@ -525,6 +525,39 @@ Aqui no se añadira el codigo por cuestiones de tamaño
 \section{Modos de conexión}
 \lstinputlisting[language=sql,caption=s-09-crear-conexiones.sql,label={lst:codigoconexion}]{../s-09-crear-conexiones.sql}
 \section{Habilitar la FRA}
+\lstinputlisting[language=sql,caption=s-11-crear-fra.sql,label={lst:fra}]{../s-11-crear-fra.sql}
+\section{Modo Archivelog}
+\lstinputlisting[language=sql,caption=s-10-modo-archivelog.sql,label={lst:archivelog}]{../s-10-modo-archivelog.sql}
+\section{Ubicaciones propuestas}
+\begin{itemize}
+  \item /disk\_2/app/oracle/oradata/VRAPROY/arch
+  \item /disk\_6/app/oracle/oradata/VRAPROY/flash\_recovery\_area
+\end{itemize}
+\section{planeación del equema de respaldos}
+\section{Tipos de backups a realizar}
+\begin{itemize}
+  \item Incremental de nivel 0
+  \item Incrementales de nivel 1 cumulativos
+\end{itemize}
+\section{Frecuencia de repetición}
+\begin{itemize}
+  \item Cada 7 dias se hace el incremental de nivel 0
+  \item Diario se hace cumulativo de nivel 1
+\end{itemize}
+\section{Ubicaciones de respaldo (FRA)}
+\begin{itemize}
+  \item /disk\_6/app/oracle/oradata/VRAPROY/flash\_recovery\_area
+\end{itemize}
+\section{Política de retención de backups}
+\begin{itemize}
+  \item Ventana de 7 dias de retención
+  \item 2 respaldos maximo de archive redo logs
+\end{itemize}
+\section{Tamaño total en espacio en disco disponible para realizar backups}
+\begin{itemize}
+  \item Disco 7 de 10G
+  \item Disco 6 para FRA de 5G
+\end{itemize}
 
 \ifCLASSOPTIONcaptionsoff
   \newpage

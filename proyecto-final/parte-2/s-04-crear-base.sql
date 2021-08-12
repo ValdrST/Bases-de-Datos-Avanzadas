@@ -21,9 +21,9 @@ create database vraproy
       '/disk_2/app/oracle/oradata/VRAPROY/redo02b.log',
       '/disk_3/app/oracle/oradata/VRAPROY/redo02c.log') size 50m blocksize 512,
    group 3(
-      '/u01/app/oracle/oradata/VRAPROY/redo03a.log',
-      '/disk_2/app/oracle/oradata/VRAPROY/redo03b.log',
-      '/disk_3/app/oracle/oradata/VRAPROY/redo03c.log') size 50m blocksize 512
+      '/disk_6/app/oracle/oradata/VRAPROY/flash_recovery_area/redo03a.log',
+      '/disk_6/app/oracle/oradata/VRAPROY/flash_recovery_area/redo03b.log',
+      '/disk_6/app/oracle/oradata/VRAPROY/flash_recovery_area/redo03c.log') size 50m blocksize 512
    maxloghistory 1
    maxlogfiles 16
    maxlogmembers 3

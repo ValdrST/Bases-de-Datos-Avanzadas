@@ -9,21 +9,17 @@ connect sys/system2 as sysdba
 create pfile from spfile;
 
 alter system set db_recovery_file_dest_size=2G scope=both;
---calculando el tamaño seria: 
---1800M (tablespacecomunes) + 
---2000M(tablespacesmodulos) + 
---100M(Control) + 
---150M(Redo) + 
---200M(archive) + 
---250M(flashback)= 4500M
+--calculando el tamano seria: 
+--761M (datafiles)
+--18M(Control) + 
+--50M(archive) + 
+--250M(flashback)= 879M
 alter system set db_recovery_file_dest='/disk_6/app/oracle/oradata/VRAPROY/flash_recovery_area' scope=both;
 alter system set db_flashback_retention_target=2880 scope=both;
 --archivelog
 alter system set log_archive_dest_2='LOCATION=USE_DB_RECOVERY_FILE_DEST' scope=both;
 --controlfile
 alter database backup controlfile to 'LOCATION=USE_DB_RECOVERY_FILE_DEST';
---Online redo log
-alter system set db_create_online_log_dest_3='LOCATION=USE_DB_RECOVERY_FILE_DEST' scope=both;
 alter database flashback on;
 
 --vista
