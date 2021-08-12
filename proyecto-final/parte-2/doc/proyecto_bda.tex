@@ -556,9 +556,57 @@ Aqui no se añadira el codigo por cuestiones de tamaño
 \section{Tamaño total en espacio en disco disponible para realizar backups}
 \begin{itemize}
   \item Disco 7 de 10G
-  \item Disco 6 para FRA de 5G
+  \item Disco 6 para FRA de 10G
 \end{itemize}
-
+\section{Respaldo inicial}
+\begin{itemize}
+  \item 500k SPFILE
+  \item 1.05G Datafiles
+  \item 20M archive redo logs
+  \item 17M archivo de control
+\end{itemize}
+\section{Simulación de la carga diaria}
+\begin{table}[H]
+  \centering
+  \resizebox{\linewidth}{!}{\begin{tabular}{|c|c|c|c|c|} 
+   \hline
+   Fecha y hora & Datos REDO producidos & Fecha de Respaldo & Tipo de backup & Espacio requerido por el backup \\ [0.1ex] 
+   \hline
+   08 de agosto del 2021 00:00 & 28.80M & 08/08/21 & incremental nivel 0  & 801M \\
+   \hline
+   09 de agosto del 2021 00:00 & 28.90M & 09/08/21 & incremental cumulativo nivel 1  & 858M \\
+   \hline
+   10 de agosto del 2021 00:00 & 29.74M & 10/08/21 & incremental cumulativo nivel 1  & 923M \\
+   \hline
+   11 de agosto del 2021 00:00 & 1.15M & 11/08/21 & incremental cumulativo nivel 1  & 964M \\
+   \hline
+   12 de agosto del 2021 00:00 & 34.75M & 12/08/21 & incremental cumulativo nivel 1  & 1015M \\
+   \hline
+   13 de agosto del 2021 00:00 & 24.75M & 13/08/21 & incremental cumulativo nivel 1  & 1089M \\
+   \hline
+   14 de agosto del 2021 00:00 & 11.75M & 14/08/21 & incremental cumulativo nivel 1  & 1167M \\
+   \hline
+   15 de agosto del 2021 00:00 & 38.75M & 15/08/21 & incremental nivel 0  & 978M \\
+   \hline
+  \end{tabular}}
+  \caption{Simulación}
+  \label{tabla:16}
+\end{table}
+\section{Simular un proceso de instance recovery}
+se deja fast\_start\_mttr\_target en 1
+\section{Simular un proceso de complete media recovery}
+\subsection{Manual}
+\begin{itemize}
+  \item se corre mv a el archivo que fue de manera inetencional renombrado
+\end{itemize}
+\subsection{DRA}
+\begin{itemize}
+  \item se corre en rman list failure;
+  \item Se corre el proceso manual del comando advise failure;
+  \item Restore datafile \#;
+  \item Recover datafile \#;
+  \item Alter database open;
+\end{itemize}
 \ifCLASSOPTIONcaptionsoff
   \newpage
 
