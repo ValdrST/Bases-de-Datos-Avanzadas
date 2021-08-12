@@ -55,6 +55,6 @@ create tablespace indexesTbs
 Prompt Creando tablespace multimediaObjTbs
 create bigfile tablespace multimediaObjTbs
    	datafile '/disk_4/app/oracle/oradata/VRAPROY/multimediaObjTbs.dbf'
-   	size 1g blocksize 8k autoextend on next 256m maxsize unlimited
+   	size 1g autoextend on next 256m maxsize unlimited
    	extent management local autoallocate 
    	segment space management auto;
