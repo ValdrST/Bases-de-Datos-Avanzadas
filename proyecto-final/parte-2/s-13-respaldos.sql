@@ -16,8 +16,8 @@ configure channel device type disk format '/disk_7/app/oracle/oradata/VRAPROY/ba
 
 backup database plus archivelog format "/disk_7/app/oracle/oradata/VRAPROY/backups/arch_%U";
 
-backup as backupset incremental level 0 database;
-backup as backupset incremental level 1 cumulative database;
+backup as backupset incremental level 0 database plus archivelog;
+backup as backupset incremental level 1 cumulative database plus archivelog;
 
 --backup database plus archivelog tag backup_total;
 
