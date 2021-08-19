@@ -23,6 +23,14 @@ backup as backupset incremental level 1 cumulative database;
 
 --VISTAS
 
+run {
+allocate channel disk1 device type disk format '/u01/copies/%u';
+allocate channel disk2 device type disk format '/u02/copies/%u';
+allocate channel disk3 device type disk format '/u03/copies/%u';
+backup as copy database;
+}
+backup as copy device type disk database;
+
 --select * from v$backup_files;
 --select * from v$backup_set;
 --select * from v$backup_piece;
