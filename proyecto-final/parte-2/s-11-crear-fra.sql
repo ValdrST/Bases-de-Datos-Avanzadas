@@ -22,14 +22,4 @@ alter system set log_archive_dest_2='LOCATION=USE_DB_RECOVERY_FILE_DEST' scope=b
 alter database backup controlfile to 'LOCATION=USE_DB_RECOVERY_FILE_DEST';
 alter database flashback on;
 
---vista
---SELECT * FROM V$RECOVERY_FILE_DEST
---SELECT * FROM V$FLASH_RECOVERY_AREA_USAGE;
---SELECT NAME FROM V$CONTROLFILE;
---SELECT * FROM V$LOGFILE;
-
-
---vista para ver el redo log
---select * from v$log;
-
 whenever sqlerror continue

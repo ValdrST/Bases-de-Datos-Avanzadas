@@ -22,9 +22,6 @@ alter database archivelog;
 alter database open;
 
 archive log list
---select * from v$database;
---select * from v$archived_log;
---select * from v$archive_dest;
 
 whenever sqlerror continue
 

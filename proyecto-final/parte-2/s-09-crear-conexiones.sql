@@ -13,4 +13,3 @@ alter system register;
 !lsnrctl services
 
 whenever sqlerror continue
--- select * from v$session;

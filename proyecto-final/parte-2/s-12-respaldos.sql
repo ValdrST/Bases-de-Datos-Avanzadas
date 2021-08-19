@@ -30,8 +30,3 @@ allocate channel disk3 device type disk format '/u03/copies/%u';
 backup as copy database;
 }
 backup as copy device type disk database;
-
---select * from v$backup_files;
---select * from v$backup_set;
---select * from v$backup_piece;
---select * from v$rman_configuration;
